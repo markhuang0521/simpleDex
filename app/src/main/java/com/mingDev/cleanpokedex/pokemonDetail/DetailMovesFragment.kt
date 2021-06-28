@@ -69,7 +69,6 @@ class DetailMovesFragment : Fragment(), PokemonListener, MoveSetListener {
     }
 
     override fun onImageClick(pokemon: PokemonDto) {
-        TODO("Not yet implemented")
     }
 
     override fun onMoveSetClick(pokemon: MoveSetDto) {

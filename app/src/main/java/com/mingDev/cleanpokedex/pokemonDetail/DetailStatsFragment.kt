@@ -41,7 +41,8 @@ class DetailStatsFragment : Fragment(), PokemonListener {
     }
 
     override fun onImageClick(pokemon: PokemonDto) {
-        TODO("Not yet implemented")
+        // no need for action
+
     }
 
 }
