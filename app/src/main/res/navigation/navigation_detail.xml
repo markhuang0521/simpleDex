@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_detail"
+    app:startDestination="@id/detailStatsFragment">
+
+    <fragment
+        android:id="@+id/detailMovesFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonDetail.DetailMovesFragment"
+        android:label="fragment_detail_moves"
+        tools:layout="@layout/fragment_detail_moves" />
+    <fragment
+        android:id="@+id/detailMoreFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonDetail.DetailMoreFragment"
+        android:label="fragment_detail_more"
+        tools:layout="@layout/fragment_detail_more" />
+    <fragment
+        android:id="@+id/detailStatsFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonDetail.DetailStatsFragment"
+        android:label="DetailStatsFragment"
+        tools:layout="@layout/fragment_detail_stat" />
+</navigation>

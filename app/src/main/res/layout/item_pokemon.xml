@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pokemon"
+            type="com.mingDev.cleanpokedex.database.entity.PokemonDto" />
+
+        <variable
+            name="clickListener"
+            type="com.mingDev.cleanpokedex.ui.PokemonListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        backgroundColorByType="@{pokemon.types[0]}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:elevation="10dp"
+        android:onClick="@{()->clickListener.onCardViewClick(pokemon)}"
+        app:cardCornerRadius="10dp"
+        tools:cardBackgroundColor="@color/grass">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/btn_is_caught"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:checked="@={pokemon.caught}"
+                android:drawableStart="@drawable/is_checked_btn_state"
+                android:onClick="@{()->clickListener.onCatchBtnClick(pokemon)}"
+                android:textSize="0sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_poke_name"
+                app:layout_constraintEnd_toStartOf="@+id/iv_poke_ball"
+                app:layout_constraintTop_toTopOf="@+id/tv_poke_name"
+                tools:drawableStart="@drawable/is_checked_btn_state" />
+
+            <ImageView
+                android:id="@+id/iv_pokemon"
+                imageUrl="@{pokemon}"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginEnd="5dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="pokemon"
+                android:onClick="@{()->clickListener.onImageClick(pokemon)}"
+                app:layout_constraintBottom_toBottomOf="@id/iv_poke_ball"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_poke_ball"
+                tools:src="@drawable/type_poison" />
+
+
+            <ImageView
+
+                android:id="@+id/iv_poke_ball"
+                android:layout_width="106dp"
+                android:layout_height="106dp"
+                android:alpha=".15"
+                android:contentDescription="pokeball"
+                android:src="@drawable/poke_ball"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_poke_name"
+                pokemonName="@{pokemon.name}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/roboto_black"
+                android:lineSpacingExtra="1.2dp"
+                android:maxEms="10"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/roboto_black"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_type_list"
+                app:layout_constraintEnd_toStartOf="@+id/btn_is_caught"
+                app:layout_constraintStart_toEndOf="@id/tv_poke_id"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="bulsdsa" />
+
+
+            <TextView
+                android:id="@+id/tv_poke_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:alpha="0.7"
+                android:gravity="top"
+                android:text="@{pokemon.toIdFormatString()}"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_poke_name"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="#001" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_type_list"
+                typeLiveData="@{pokemon.types}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_poke_ball"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

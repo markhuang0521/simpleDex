@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">CleanPokedex</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_label">Pokedex</string>
+    <string name="search_hint">search pokemon name or ID</string>
+
+    <string name="no_pokemon_search_result">No Pokemon Found... \nPlease try a different Search</string>
+    <string name="title_activity_pokemon_detail">detailActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="order_descending">descending</string>
+    <string name="order_ascending">ascending</string>
+    <string name="sort_speed">speed</string>
+    <string name="sort_special_defense">specialDefense</string>
+    <string name="sort_special_attack">specialAttack</string>
+    <string name="sort_attack">attack</string>
+    <string name="sort_hp">hp</string>
+    <string name="sort_total_stat">totalStat</string>
+    <string name="sort_name">name</string>
+    <string name="sort_id">id</string>
+    <string name="text_filter">This Pokémon\'s damaging moves have a 10% chance to make the target flinch with each hit if they do not already cause flinching as a secondary effect. This ability does not stack with a held item. Overworld: The wild encounter rate is halved while this Pokémon is first in the party.</string>
+</resources>

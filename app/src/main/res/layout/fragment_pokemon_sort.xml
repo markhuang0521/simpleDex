@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="com.mingDev.cleanpokedex.ui.PokemonSortFragment.ClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_sortBy"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Sort By..."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rg_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:checkedButton="@+id/rb_sort_id"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/text_orderBy"
+
+            app:layout_constraintTop_toBottomOf="@+id/text_sortBy"
+            tools:layout_editor_absoluteX="16dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rb_sort_id"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/water"
+                android:hint="@string/sort_id"
+                android:text="ID (Number)"
+                android:textSize="16dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/water"
+
+                android:hint="@string/sort_name"
+                android:text="Alphabet (A-Z)"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/water"
+
+                android:hint="@string/sort_total_stat"
+                android:text="Total"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/water"
+
+                android:hint="@string/sort_hp"
+                android:text="HP"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:buttonTint="@color/water"
+                android:hint="@string/sort_attack"
+
+                android:text="Attack"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/water"
+
+                android:hint="defense"
+                android:text="Defense"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/water"
+                android:hint="@string/sort_special_attack"
+                android:text="Sp.Attack"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:buttonTint="@color/water"
+                android:hint="@string/sort_special_defense"
+                android:text="Sp.Defense"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:buttonTint="@color/water"
+                android:hint="@string/sort_speed"
+                android:text="Speed"
+                android:textSize="16dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/text_orderBy"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rg_sort" />
+
+        <RadioGroup
+            android:id="@+id/rg_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="552dp"
+            android:checkedButton="@+id/rb_order_asc"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sort"
+            app:layout_constraintTop_toBottomOf="@+id/text_orderBy"
+            tools:layout_editor_absoluteX="16dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rb_order_asc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/water"
+                android:hint="@string/order_ascending"
+                android:text="Ascending"
+                android:textSize="16dp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:buttonTint="@color/water"
+                android:hint="@string/order_descending"
+                android:text="Descending"
+                android:textSize="16dp" />
+
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/dragon"
+            android:elevation="10dp"
+            android:text="Apply"
+            app:layout_constraintTop_toBottomOf="@id/rg_order" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

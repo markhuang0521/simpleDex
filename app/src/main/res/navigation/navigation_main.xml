@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/pokemonListFragment">
+
+    <fragment
+        android:id="@+id/pokemonListFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonDex.PokemonListFragment"
+        android:label="PokemonListFragment"
+        tools:layout="@layout/fragment_pokemon_list">
+        <action
+            android:id="@+id/action_pokemonListFragment_to_caughtListFragment"
+            app:destination="@id/caughtListFragment" />
+        <action
+            android:id="@+id/action_pokemonListFragment_to_pokemonDetailActivity"
+            app:destination="@id/pokemonDetailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonItemsFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonItems.PokemonItemsFragment"
+        android:label="Item Dex"
+        tools:layout="@layout/fragment_pokemon_items" />
+    <fragment
+        android:id="@+id/caughtListFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonCaughtList.CaughtListFragment"
+        android:label="CaughtListFragment"
+        tools:layout="@layout/fragment_caught_list">
+        <action
+            android:id="@+id/action_caughtListFragment_to_pokemonListFragment"
+            app:destination="@id/pokemonListFragment" />
+        <action
+            android:id="@+id/action_caughtListFragment_to_pokemonDetailActivity"
+            app:destination="@id/pokemonDetailActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/pokemonDetailActivity"
+        android:name="com.mingDev.cleanpokedex.pokemonDetail.PokemonDetailActivity"
+        android:label="PokemonDetailActivity" >
+        <argument
+            android:name="typeColor"
+            app:argType="string" />
+    </activity>
+    <fragment
+        tools:layout="@layout/fragment_move_list_detail"
+        android:id="@+id/moveListDetailFragment"
+        android:name="com.mingDev.cleanpokedex.ui.MoveListDetailFragment"
+        android:label="MoveListDetailFragment" >
+        <action
+            android:id="@+id/action_moveListDetailFragment_to_pokemonDetailActivity"
+            app:destination="@id/pokemonDetailActivity" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment__moves_list"
+        android:id="@+id/moveListFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonMove.MoveListFragment"
+        android:label="MoveListFragment" >
+        <action
+            android:id="@+id/action_moveListFragment_to_moveListDetailFragment"
+            app:destination="@id/moveListDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/abilityListFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonAbility.AbilityListFragment"
+        android:label="AbilityListFragment" />
+</navigation>

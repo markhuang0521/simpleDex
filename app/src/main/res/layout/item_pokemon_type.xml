@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pokemonType"
+            type="String" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        backgroundColorByType="@{pokemonType}"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="15dp"
+        tools:cardBackgroundColor="@color/grass">
+
+        <TextView
+            style="@style/typeTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_pokemon_type_bg"
+
+            android:paddingStart="24dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="3dp"
+            android:text="@{pokemonType}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Grass" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

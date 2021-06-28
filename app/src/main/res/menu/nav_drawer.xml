@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/pokemonListFragment"
+            android:checked="true"
+            android:icon="@drawable/poke_ball"
+            android:title="Pokedex" />
+        <item
+            android:id="@+id/moveListFragment"
+            android:icon="@drawable/ic_fire_white"
+            android:iconTint="@color/fire"
+            android:title="Move Dex" />
+        <item
+            android:id="@+id/abilityListFragment"
+            android:icon="@drawable/ic_ability_white"
+            android:title="Ability Dex" />
+        <item
+            android:id="@+id/pokemonItemsFragment"
+            android:icon="@drawable/ic_item_24"
+            android:title="Item Dex" />
+    </group>
+</menu>

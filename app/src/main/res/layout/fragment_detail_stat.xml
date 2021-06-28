@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mingDev.cleanpokedex.pokemonDex.PokedexViewModel" />
+
+        <variable
+            name="clickListener"
+            type="com.mingDev.cleanpokedex.ui.PokemonListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        layoutBackgroundColorByType="@{viewModel.selectedPokemon.types[0]}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="@color/grass"
+        tools:context=".pokemonDetail.PokemonDetailFragment">
+
+
+        <!--        pokemon name / image-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView_pokemon_name"
+
+            backgroundColorByType="@{viewModel.selectedPokemon.types[0]}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:cardBackgroundColor="@color/grass">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+
+                android:background="@drawable/item_pokemon_detail_bg">
+
+                <!--                <ToggleButton-->
+                <!--                    android:id="@+id/btn_is_caught"-->
+                <!--                    android:layout_width="36dp"-->
+                <!--                    android:layout_height="36dp"-->
+                <!--                    android:layout_marginEnd="8dp"-->
+                <!--                    android:background="@android:color/transparent"-->
+                <!--                    android:checked="@={viewModel.selectedPokemon.caught}"-->
+                <!--                    android:drawableStart="@drawable/is_checked_btn_state"-->
+                <!--                    android:onClick="@{()->clickListener.onCatchBtnClick(viewModel.selectedPokemon)}"-->
+                <!--                    android:textSize="0sp"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@+id/tv_poke_desc"-->
+                <!--                    app:layout_constraintEnd_toStartOf="@+id/iv_poke_ball"-->
+                <!--                    app:layout_constraintStart_toEndOf="@+id/tv_poke_desc"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/tv_poke_desc"-->
+                <!--                    tools:drawableStart="@drawable/is_checked_btn_state" />-->
+
+
+                <ImageView
+                    android:id="@+id/iv_poke_ball"
+                    imageUrl="@{viewModel.selectedPokemon}"
+                    android:layout_width="116dp"
+                    android:layout_height="116dp"
+                    android:contentDescription="pokeball"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/type_poison" />
+
+                <TextView
+
+                    android:id="@+id/tv_poke_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{viewModel.selectedPokemon.name}"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/roboto_black"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_poke_desc"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="bulsdsa" />
+
+                <TextView
+                    android:id="@+id/tv_poke_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@{`A `+viewModel.selectedPokemonDetail.genera}"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/recycler_type_list"
+                    app:layout_constraintStart_toStartOf="@id/tv_poke_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_poke_name"
+                    tools:text="213123 pokemon" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_type_list"
+                    typeLiveData="@{viewModel.selectedPokemon.types}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_poke_ball"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/layout_nest"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView_pokemon_name">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_nest2"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_species"
+                    style="@style/DetailTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="14dp"
+                    android:text="Species"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/layout_nest2" />
+
+                <!--        pokemon species-->
+
+                <com.google.android.material.card.MaterialCardView
+
+                    android:id="@+id/cardView_species"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_species">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_flavor_text"
+                            style="@style/DetailTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            android:background="@drawable/text_view_round_bg"
+                            android:lineSpacingMultiplier="1.3"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="@{viewModel.selectedPokemonDetail.flavorText}"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_entry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:text="Podex Entry"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_flavor_text"
+                            app:layout_constraintStart_toStartOf="@+id/tv_flavor_text"
+                            app:layout_constraintTop_toBottomOf="@id/tv_flavor_text" />
+
+                        <TextView
+                            android:id="@+id/tv_height"
+                            style="@style/DetailTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            android:background="@drawable/text_view_round_bg"
+                            android:gravity="center"
+                            android:lineSpacingMultiplier="1.3"
+                            android:padding="5dp"
+                            android:text="@{viewModel.selectedPokemon.heightFormatToString()}"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toStartOf="@id/tv_weight"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/text_entry"
+                            tools:text="height:31.2" />
+
+                        <TextView
+                            android:id="@+id/tv_weight"
+
+                            style="@style/DetailTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            android:background="@drawable/text_view_round_bg"
+                            android:gravity="center"
+                            android:lineSpacingMultiplier="1.3"
+                            android:padding="5dp"
+                            android:text="@{viewModel.selectedPokemon.weightFormatToString()}"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_height"
+                            app:layout_constraintTop_toBottomOf="@id/text_entry"
+                            tools:text="weight:31.2" />
+
+                        <TextView
+                            android:id="@+id/text_height"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:text="Height"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_height"
+                            app:layout_constraintStart_toStartOf="@+id/tv_height"
+                            app:layout_constraintTop_toBottomOf="@id/tv_height" />
+
+                        <TextView
+                            android:id="@+id/text_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:text="Weight"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_weight"
+                            app:layout_constraintStart_toStartOf="@+id/tv_weight"
+                            app:layout_constraintTop_toBottomOf="@id/tv_weight" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/text_abilities"
+                    style="@style/DetailTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:text="Abilities"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardView_species" />
+
+                <!--        pokemon Abilities-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView_abilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_abilities">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_ability1"
+                            style="@style/DetailAbilityStyle"
+                            textBackgroundByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@{viewModel.selectedPokemon.ability1}"
+                            app:drawableEndCompat="@drawable/ic_info_gray"
+                            tools:backgroundTint="@color/grass"
+                            tools:text="blaze" />
+
+                        <TextView
+                            android:id="@+id/tv_ability2"
+                            style="@style/DetailAbilityStyle"
+                            textBackgroundByType="@{viewModel.selectedPokemon.types[0]}"
+                            viewExist="@{viewModel.selectedPokemon.ability2}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="12dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="@{viewModel.selectedPokemon.ability2}"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            app:drawableEndCompat="@drawable/ic_info_gray"
+                            tools:backgroundTint="@color/grass"
+                            tools:text="blaze" />
+
+                        <TextView
+                            android:id="@+id/tv_hidden_ability"
+                            style="@style/DetailAbilityStyle"
+                            textBackgroundByType="@{viewModel.selectedPokemon.types[0]}"
+
+                            viewExist="@{viewModel.selectedPokemon.hiddenAbility}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:alpha=".8"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="@{`(Hidden) `+viewModel.selectedPokemon.hiddenAbility}"
+                            android:textColor="@color/white"
+                            app:drawableEndCompat="@drawable/ic_info_gray"
+                            tools:backgroundTint="@color/grass"
+                            tools:text="`Hidden:`+blaze" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/text_base_stat"
+                    style="@style/DetailTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:text="Base Stat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardView_abilities" />
+
+                <!--        pokemon stats-->
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/DetailCardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_base_stat">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/text_hp"
+                            style="@style/DetailTextStyle"
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="center"
+                            android:text="HP"
+                            android:textSize="16dp"
+                            app:chainUseRtl="false"
+                            app:layout_constraintBottom_toTopOf="@+id/text_attack"
+                            app:layout_constraintEnd_toStartOf="@+id/pb_hp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:textColor="@color/black" />
+
+
+                        <ProgressBar
+                            android:id="@+id/pb_hp"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            progressAnimation="@{viewModel.selectedPokemon.hp}"
+                            progressColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:indeterminate="false"
+                            android:max="@{viewModel.selectedPokemon.maxProgress()}"
+                            android:progress="@{viewModel.selectedPokemon.hp}"
+                            android:progressBackgroundTint="@color/white"
+                            android:scaleY="3"
+                            app:layout_constraintBottom_toBottomOf="@id/text_hp"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_hp"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/text_hp"
+                            app:layout_constraintTop_toTopOf="@id/text_hp" />
+
+                        <TextView
+                            android:id="@+id/text_attack"
+
+                            style="@style/DetailTextStyle"
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="center"
+                            android:text="Attack"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/text_defense"
+                            app:layout_constraintEnd_toEndOf="@+id/text_hp"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/text_hp"
+                            app:layout_constraintTop_toBottomOf="@+id/text_hp"
+                            tools:textColor="@color/grass" />
+
+                        <ProgressBar
+                            android:id="@+id/pb_attack"
+                            style="?android:attr/progressBarStyleHorizontal"
+
+                            progressAnimation="@{viewModel.selectedPokemon.attack}"
+
+                            progressColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:indeterminate="false"
+                            android:max="@{viewModel.selectedPokemon.maxProgress()}"
+                            android:progress="@{viewModel.selectedPokemon.attack}"
+                            android:progressBackgroundTint="@color/white"
+                            android:scaleY="3"
+                            app:layout_constraintBottom_toBottomOf="@id/text_attack"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_attack"
+                            app:layout_constraintStart_toEndOf="@id/text_attack"
+                            app:layout_constraintTop_toTopOf="@id/text_attack" />
+
+                        <TextView
+                            android:id="@+id/text_defense"
+                            style="@style/DetailTextStyle"
+
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="center"
+                            android:text="Defense"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/text_sp_attack"
+                            app:layout_constraintEnd_toEndOf="@+id/text_attack"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/text_attack"
+                            app:layout_constraintTop_toBottomOf="@+id/text_attack" />
+
+                        <ProgressBar
+                            android:id="@+id/pb_defense"
+                            style="?android:attr/progressBarStyleHorizontal"
+
+
+                            progressAnimation="@{viewModel.selectedPokemon.defense}"
+                            progressColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:indeterminate="false"
+                            android:max="@{viewModel.selectedPokemon.maxProgress()}"
+                            android:progress="@{viewModel.selectedPokemon.defense}"
+                            android:progressBackgroundTint="@color/white"
+                            android:scaleY="3"
+                            app:layout_constraintBottom_toBottomOf="@id/text_defense"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_defense"
+                            app:layout_constraintStart_toEndOf="@id/text_defense"
+                            app:layout_constraintTop_toTopOf="@id/text_defense" />
+
+                        <TextView
+                            android:id="@+id/text_sp_attack"
+
+                            style="@style/DetailTextStyle"
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:text="Sp. Attack"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/text_sp_defense"
+                            app:layout_constraintEnd_toEndOf="@+id/text_defense"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/text_defense"
+                            app:layout_constraintTop_toBottomOf="@+id/text_defense" />
+
+                        <ProgressBar
+                            android:id="@+id/pb_sp_attack"
+
+                            style="?android:attr/progressBarStyleHorizontal"
+
+                            progressAnimation="@{viewModel.selectedPokemon.specialAttack}"
+                            progressColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:indeterminate="false"
+                            android:max="@{viewModel.selectedPokemon.maxProgress()}"
+                            android:progress="@{viewModel.selectedPokemon.specialAttack}"
+                            android:progressBackgroundTint="@color/white"
+                            android:scaleY="3"
+                            app:layout_constraintBottom_toBottomOf="@id/text_sp_attack"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_sp_attack"
+                            app:layout_constraintStart_toEndOf="@id/text_sp_attack"
+                            app:layout_constraintTop_toTopOf="@id/text_sp_attack" />
+
+                        <TextView
+                            android:id="@+id/text_sp_defense"
+
+                            style="@style/DetailTextStyle"
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:text="Sp. Defense"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/text_speed"
+                            app:layout_constraintEnd_toEndOf="@+id/text_sp_attack"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/text_sp_attack"
+                            app:layout_constraintTop_toBottomOf="@+id/text_sp_attack" />
+
+                        <ProgressBar
+                            android:id="@+id/pb_sp_defense"
+
+                            style="?android:attr/progressBarStyleHorizontal"
+
+                            progressAnimation="@{viewModel.selectedPokemon.specialDefense}"
+                            progressColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:indeterminate="false"
+                            android:max="@{viewModel.selectedPokemon.maxProgress()}"
+                            android:progress="@{viewModel.selectedPokemon.specialDefense}"
+                            android:progressBackgroundTint="@color/white"
+                            android:scaleY="3"
+                            app:layout_constraintBottom_toBottomOf="@id/text_sp_defense"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_sp_defense"
+                            app:layout_constraintStart_toEndOf="@id/text_sp_defense"
+                            app:layout_constraintTop_toTopOf="@id/text_sp_defense" />
+
+                        <TextView
+                            android:id="@+id/text_speed"
+
+                            style="@style/DetailTextStyle"
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:text="Speed"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            app:layout_constraintEnd_toEndOf="@+id/text_sp_defense"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/text_sp_defense"
+                            app:layout_constraintTop_toBottomOf="@+id/text_sp_defense" />
+
+                        <ProgressBar
+                            android:id="@+id/pb_speed"
+                            style="?android:attr/progressBarStyleHorizontal"
+
+                            progressAnimation="@{viewModel.selectedPokemon.speed}"
+                            progressColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:indeterminate="false"
+                            android:max="@{viewModel.selectedPokemon.maxProgress()}"
+                            android:progress="@{viewModel.selectedPokemon.speed}"
+                            android:progressBackgroundTint="@color/white"
+                            android:scaleY="3"
+                            app:layout_constraintBottom_toBottomOf="@id/text_speed"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_speed"
+                            app:layout_constraintStart_toEndOf="@id/text_speed"
+                            app:layout_constraintTop_toTopOf="@id/text_speed" />
+
+                        <TextView
+                            android:id="@+id/tv_hp"
+                            style="@style/statTextStyle"
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@{String.valueOf(viewModel.selectedPokemon.hp)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/pb_hp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/pb_hp"
+                            app:layout_constraintTop_toTopOf="@+id/pb_hp"
+                            tools:text="12313" />
+
+                        <TextView
+                            android:id="@+id/tv_attack"
+                            style="@style/statTextStyle"
+
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@{String.valueOf(viewModel.selectedPokemon.attack)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/pb_attack"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/pb_attack"
+                            app:layout_constraintTop_toTopOf="@+id/pb_attack" />
+
+                        <TextView
+                            android:id="@+id/tv_defense"
+                            style="@style/statTextStyle"
+
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@{String.valueOf(viewModel.selectedPokemon.defense)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/pb_defense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/pb_defense"
+                            app:layout_constraintTop_toTopOf="@+id/pb_defense" />
+
+                        <TextView
+                            android:id="@+id/tv_sp_attack"
+                            style="@style/statTextStyle"
+
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@{String.valueOf(viewModel.selectedPokemon.specialAttack)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/pb_sp_attack"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/pb_sp_attack"
+                            app:layout_constraintTop_toTopOf="@+id/pb_sp_attack" />
+
+                        <TextView
+                            android:id="@+id/tv_sp_defense"
+                            style="@style/statTextStyle"
+
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@{String.valueOf(viewModel.selectedPokemon.specialDefense)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/pb_sp_defense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/pb_sp_defense"
+                            app:layout_constraintTop_toTopOf="@+id/pb_sp_defense" />
+
+                        <TextView
+                            android:id="@+id/tv_speed"
+                            style="@style/statTextStyle"
+
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@{String.valueOf(viewModel.selectedPokemon.speed)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/pb_speed"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/pb_speed"
+                            app:layout_constraintTop_toTopOf="@+id/pb_speed" />
+
+                        <TextView
+                            android:id="@+id/tv_total"
+                            style="@style/statTextStyle"
+                            textColorByType="@{viewModel.selectedPokemon.types[0]}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="@{`Total: `+String.valueOf(viewModel.selectedPokemon.totalStat)}"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_speed"
+                            tools:text="@color/grass" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

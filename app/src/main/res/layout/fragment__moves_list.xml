@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mingDev.cleanpokedex.pokemonMove.MoveSetViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".pokemonMove.MoveListFragment">
+
+        <LinearLayout
+            android:id="@+id/layout_text_moveSet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/electric"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_move_name"
+                style="@style/DetailTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5.7"
+                android:gravity="center"
+                android:paddingStart="40dp"
+                android:text="Move Name"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/tv_power"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:text="Power"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+
+                android:id="@+id/tv_accuracy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.6"
+                android:text="Acc"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_pp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PP."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ProgressBar
+
+            android:id="@+id/progressBar"
+
+            viewVisible="@{viewModel.showLoading.booleanValue()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:layout_marginTop="4dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/electric"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_move_set_list"
+            moveSetLiveData="@{viewModel.moveSets}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_text_moveSet"
+            tools:listitem="@layout/item_move_set" />
+
+
+        <!--         fab layout-->
+        <com.nambimobile.widgets.efab.ExpandableFabLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.nambimobile.widgets.efab.Overlay
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="@color/white"
+                app:overlay_openingAnimationDurationMs="0" />
+
+            <com.nambimobile.widgets.efab.ExpandableFab
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                app:efab_closingAnimationDurationMs="200"
+                app:efab_closingAnticipateTension="0"
+                app:efab_color="@color/electric"
+
+                app:efab_icon="@drawable/ic_pokeball_white"
+                app:efab_iconAnimationRotationDeg="180"
+                app:efab_openingAnimationDurationMs="200"
+
+                />
+
+            <com.nambimobile.widgets.efab.FabOption
+                android:id="@+id/fab_move_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                app:fab_color="@color/electric"
+
+                app:fab_icon="@drawable/ic_search_white"
+                app:label_backgroundColor="@color/white"
+                app:label_text="Search"
+                app:label_textColor="@color/black" />
+
+
+        </com.nambimobile.widgets.efab.ExpandableFabLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

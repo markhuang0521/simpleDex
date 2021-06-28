@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mingDev.cleanpokedex.pokemonMove.MoveSetViewModel" />
+
+    </data>
+    <!--    motion scene to scroll recyclerview to top.-->
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/layout_motion_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_ability_detail_scene">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/layout_ability_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.MoveListDetailFragment">
+
+            <TextView
+
+                android:id="@+id/tv_move_name"
+                style="@style/DetailTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/water"
+                android:padding="10dp"
+                android:text="@{viewModel.selectedMove.name}"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="ace op" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_game_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_move_name">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent_gray"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Game Description"
+                        android:textAllCaps="true"
+                        android:textColor="@color/water"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="@{viewModel.selectedMove.shortEffect}"
+                        android:textSize="16dp"
+                        tools:text="1231223213" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_detail_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintTop_toBottomOf="@id/card_game_desc">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent_gray"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="in-depth Effect"
+                        android:textAllCaps="true"
+                        android:textColor="@color/water"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="@{viewModel.selectedMove.detailEffect}"
+                        android:textSize="16dp"
+                        tools:text="1231223213" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/layout_pokemon_with_ability"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_ability_detail">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_pokemon_learn_move"
+                backgroundColorByType="@{viewModel.selectedMove.type}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toTopOf="@id/recycler_pokemon_learned_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@{`pokemons with ` +viewModel.selectedMove.name}"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/recycler_pokemon_learned_list" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_pokemon_learned_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_pokemon_learn_move" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                viewVisible="@{viewModel.showLoading.booleanValue()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerInParent="true"
+                android:layout_marginTop="4dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/psychic"
+                app:layout_constraintBottom_toBottomOf="@id/recycler_pokemon_learned_list"
+                app:layout_constraintEnd_toEndOf="@id/recycler_pokemon_learned_list"
+                app:layout_constraintStart_toStartOf="@id/recycler_pokemon_learned_list"
+                app:layout_constraintTop_toTopOf="@id/recycler_pokemon_learned_list"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

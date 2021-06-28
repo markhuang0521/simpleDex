@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mingDev.cleanpokedex.pokemonDex.PokedexViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+
+        <ProgressBar
+
+            android:id="@+id/progressBar"
+
+            viewVisible="@{viewModel.showLoading.booleanValue()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:layout_marginTop="4dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/psychic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <!--        no search result text-->
+        <TextView
+            android:id="@+id/text_no_search_result"
+            style="@style/TextAppearance.AppCompat.Title"
+            viewVisible="@{viewModel.showNoResult}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="@string/no_pokemon_search_result"
+            android:textColor="@color/water"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView_pokedex"
+            style="@style/SearchViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:foregroundTint="@color/fire"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_pokemon_list"
+            pokemonLiveData="@{viewModel.curPokemonList}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView_pokedex" />
+
+
+        <com.nambimobile.widgets.efab.ExpandableFabLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView_pokedex">
+
+            <com.nambimobile.widgets.efab.Overlay
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="@color/transparent"
+                app:overlay_openingAnimationDurationMs="0" />
+
+            <com.nambimobile.widgets.efab.ExpandableFab
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                app:efab_closingAnimationDurationMs="200"
+                app:efab_closingAnticipateTension="0"
+                app:efab_color="@color/red"
+
+                app:efab_icon="@drawable/ic_pokeball_white"
+                app:efab_iconAnimationRotationDeg="180"
+                app:efab_openingAnimationDurationMs="50"
+
+                />
+
+            <com.nambimobile.widgets.efab.FabOption
+
+                android:id="@+id/fab_pokemon_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                app:fab_color="@color/red"
+
+                app:fab_icon="@drawable/ic_search_white"
+                app:label_backgroundColor="@color/white"
+                app:label_text="Search"
+                app:label_textColor="@color/black" />
+
+
+            <com.nambimobile.widgets.efab.FabOption
+                android:id="@+id/fab_pokemon_filter_type"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                app:fab_color="@color/red"
+
+                app:fab_icon="@drawable/ic_fire_white"
+                app:label_backgroundColor="@color/white"
+                app:label_text="Filter By Type"
+                app:label_textColor="@color/black" />
+
+            <com.nambimobile.widgets.efab.FabOption
+                android:id="@+id/fab_pokemon_filter_gen"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                app:fab_color="@color/red"
+
+                app:fab_icon="@drawable/ic_generation_white"
+                app:label_backgroundColor="@color/white"
+                app:label_text="Filter by Gen"
+                app:label_textColor="@color/black" />
+
+            <com.nambimobile.widgets.efab.FabOption
+                android:id="@+id/fab_pokemon_sort"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                app:fab_color="@color/red"
+                app:fab_icon="@drawable/ic_sort_white"
+                app:label_backgroundColor="@color/white"
+                app:label_text="Sort"
+                app:label_textColor="@color/black" />
+        </com.nambimobile.widgets.efab.ExpandableFabLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

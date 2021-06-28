@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/detailStatsFragment"
+        android:icon="@drawable/poke_ball"
+        android:iconTint="@color/white"
+        android:title="Stats" />
+
+    <item
+        android:id="@+id/detailMovesFragment"
+        android:icon="@drawable/ic_fire_white"
+        android:title="Moves" />
+    <item
+        android:id="@+id/dasdasd"
+        android:icon="@drawable/ic_ability_white"
+        android:title="Evolution" />
+
+    <item
+        android:id="@+id/detailMoreFragment"
+        android:icon="@drawable/ic_more_white"
+        android:title="More" />
+
+</menu>

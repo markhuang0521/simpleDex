@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="move"
+            type="com.mingDev.cleanpokedex.database.entity.MoveSetDto" />
+
+        <variable
+            name="clickListener"
+            type="com.mingDev.cleanpokedex.ui.MoveSetListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="10dp"
+        android:onClick="@{()->clickListener.onMoveSetClick(move)}"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layout_text_moveSet"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_move_name"
+                    style="@style/DetailTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5.8"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingStart="40dp"
+                    android:text="@{move.name}"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    tools:text="blaze kick" />
+
+
+                <TextView
+                    android:id="@+id/tv_power"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="@{String.valueOf(move.power)}"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp"
+                    tools:text="110" />
+
+                <TextView
+                    android:id="@+id/tv_accuracy"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="@{String.valueOf(move.accuracy)}"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp"
+                    tools:text="11" />
+
+                <TextView
+                    android:id="@+id/tv_pp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@{String.valueOf(move.pp)}"
+                    android:textColor="@color/dark_grey"
+                    tools:text="11" />
+            </LinearLayout>
+
+
+            <!--            <TextView-->
+            <!--                android:textAlignment="center"-->
+            <!--                android:id="@+id/tv_move_name"-->
+            <!--                style="@style/DetailTextStyle"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="@{move.name}"-->
+            <!--                android:textColor="@color/dark_grey"-->
+            <!--                android:textSize="16sp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/cardView_type"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/tv_power"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintWidth_percent=".55"-->
+            <!--                tools:text="blaze kick" />-->
+
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_power"-->
+            <!--tools:text="213"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="@{String.valueOf(move.power)}"-->
+            <!--                android:textColor="@color/dark_grey"-->
+            <!--                app:layout_constraintBaseline_toBaselineOf="@+id/tv_move_name"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/tv_move_name"-->
+            <!--                app:layout_constraintWidth_percent=".16" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_accuracy"-->
+            <!--                android:layout_width="0dp"-->
+
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="@{String.valueOf(move.accuracy)}"-->
+            <!--                android:textColor="@color/dark_grey"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@+id/tv_power"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/tv_power"-->
+            <!--                app:layout_constraintTop_toTopOf="@+id/tv_power"-->
+            <!--                app:layout_constraintWidth_percent=".1" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_pp"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:gravity="end"-->
+            <!--                android:text="@{String.valueOf(move.pp)}"-->
+            <!--                android:textColor="@color/dark_grey"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@+id/tv_accuracy"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/tv_accuracy"-->
+            <!--                app:layout_constraintTop_toTopOf="@+id/tv_accuracy"-->
+            <!--                app:layout_constraintWidth_percent=".11" />-->
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView_type"
+                backgroundColorByType="@{move.type}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="5dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/materialCardView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_text_moveSet"
+                app:layout_constraintWidth_percent=".6"
+                tools:cardBackgroundColor="@color/grass">
+
+                <TextView
+                    style="@style/typeTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/item_pokemon_type_bg"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="@{move.type}"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Grass" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginEnd="18dp"
+                android:elevation="8dp"
+                app:cardBackgroundColor="@color/Light_blue"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView_type"
+                app:layout_constraintWidth_percent=".25">
+
+                <TextView
+                    style="@style/typeTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/item_pokemon_type_bg"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="@{move.damageClass}"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Status" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Light_blue">#FFBAC7FF</color>
+    <color name="light_grey">#B6AEAE</color>
+    <color name="dark_grey">#423F3F</color>
+    <color name="red">#ED3427</color>
+    <color name="dark_red">#D13226</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent_gray">#66D6CECE</color>
+
+    <color name="detail_bg">#40C5B9B9</color>
+
+    <color name="hp_color">#FFF5FF00</color>
+    <color name="atk_color">#D6244D</color>
+    <color name="def_color">#1C37D1</color>
+    <color name="sp_atk_Color">#430064</color>
+    <color name="sp_def_Color">#D138EC</color>
+    <color name="sped_Color">#009688</color>
+
+    <color name="normal">#909AA2</color>
+    <color name="fire">#FF9742</color>
+    <color name="water">#3692DC</color>
+    <color name="electric">#FFF7D02C</color>
+    <color name="grass">#37BF4B</color>
+    <color name="ice">#FF96D9D6</color>
+    <color name="fighting">#D6244D</color>
+    <color name="poison">#FFA33EA1</color>
+    <color name="ground">#FFE2BF65</color>
+    <color name="flying">#89AAE3</color>
+    <color name="psychic">#FFF95587</color>
+    <color name="bug">#FFA6B91A</color>
+    <color name="rock">#FFB6A136</color>
+    <color name="ghost">#4C6AB2</color>
+    <color name="dark">#FF705746</color>
+    <color name="dragon">#016FC9</color>
+    <color name="steel">#5A8EA2</color>
+    <color name="fairy">#FB89EB</color>
+    <color name="type_bg">#40FFFFFF</color>
+
+
+</resources>
