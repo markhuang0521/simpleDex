@@ -22,7 +22,7 @@ class PokemonRepository(
     // fetch data from api
 
     suspend fun downloadPokedex() = withContext(ioDispatcher) {
-        val response = pokeApi.getPokemonList(150, 930)
+        val response = pokeApi.getPokemonList(100, 930)
         val results: List<ResultUrl> = response.results
         val pokemonDtos = mutableListOf<PokemonDto>()
         val pokemonDetailDtos = mutableListOf<PokemonDetailDto>()

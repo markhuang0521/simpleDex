@@ -65,7 +65,7 @@
 
                 <ImageView
                     android:id="@+id/iv_poke_ball"
-                    imageUrl="@{viewModel.selectedPokemon}"
+                    pokemonImageUrl="@{viewModel.selectedPokemon}"
                     android:layout_width="116dp"
                     android:layout_height="116dp"
                     android:contentDescription="pokeball"

@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "tb_abilities")
-class AbilityDto(
+data class AbilityDto(
     @PrimaryKey
     val name: String,
     val id: Int,

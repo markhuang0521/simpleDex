@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="ability"
+            type="com.mingDev.cleanpokedex.database.entity.AbilityDto" />
+
+        <variable
+            name="clickListener"
+            type="com.mingDev.cleanpokedex.ui.AbilityListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_ability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@{ability.name}"
+                android:textAllCaps="true"
+                android:textColor="@color/water"
+                android:textSize="18sp"
+                tools:text="opop" />
+
+            <TextView
+                android:layout_marginBottom="5dp"
+                android:lineSpacingMultiplier="1.2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@{ability.shortEffect}"
+                android:textAlignment="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="14dp"
+                tools:text="1231223213" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

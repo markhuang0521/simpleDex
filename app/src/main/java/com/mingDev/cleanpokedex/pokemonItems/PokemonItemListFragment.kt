@@ -1,4 +1,4 @@
-package com.mingDev.cleanpokedex.pokemonAbility
+package com.mingDev.cleanpokedex.pokemonItems
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,30 +9,26 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mingDev.cleanpokedex.R
-import com.mingDev.cleanpokedex.database.entity.AbilityDto
-import com.mingDev.cleanpokedex.databinding.FragmentAbilityListBinding
-import com.mingDev.cleanpokedex.ui.AbilityAdapter
-import com.mingDev.cleanpokedex.ui.AbilityListener
-import com.mingDev.cleanpokedex.ui.MoveListDetailFragment
+import com.mingDev.cleanpokedex.databinding.FragmentPokemonItemListBinding
+import com.mingDev.cleanpokedex.ui.PokemonItemAdapter
 import com.mingDev.cleanpokedex.utils.setToolbarColor
 import com.mingDev.cleanpokedex.utils.setToolbarTitle
 import org.koin.android.ext.android.inject
 
 
-class AbilityListFragment : Fragment(), AbilityListener {
-    private lateinit var binding: FragmentAbilityListBinding
-    private val viewModel: AbilityViewModel by inject()
-    private lateinit var abilityAdapter: AbilityAdapter
-
+class PokemonItemListFragment : Fragment() {
+    private lateinit var binding: FragmentPokemonItemListBinding
+    private val viewModel: PokemonItemViewModel by inject()
+    private lateinit var pokemonItemAdapter: PokemonItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAbilityListBinding.inflate(inflater, container, false)
-        setToolbarColor(ContextCompat.getColor(requireContext(), R.color.water))
-        setToolbarTitle("Ability Dex")
+        binding = FragmentPokemonItemListBinding.inflate(inflater, container, false)
+        setToolbarColor(ContextCompat.getColor(requireContext(), R.color.grass))
+        setToolbarTitle("Item Dex")
         return binding.root
     }
 
@@ -46,23 +42,20 @@ class AbilityListFragment : Fragment(), AbilityListener {
 
     private fun setUpRecyclerView() {
 
-        abilityAdapter = AbilityAdapter(this)
-        binding.recyclerAbilityList.apply {
+        pokemonItemAdapter = PokemonItemAdapter()
+        binding.recyclerItemList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = abilityAdapter
+            adapter = pokemonItemAdapter
         }
     }
 
     private fun setUpObserver() {
         viewModel.allAbilities.observe(viewLifecycleOwner, Observer {
             it?.let {
-                abilityAdapter.submitList(it)
+                pokemonItemAdapter.submitList(it)
             }
         })
     }
 
-    override fun onAbilityClick(ability: AbilityDto) {
-//        TODO("Not yet implemented")
-    }
 
 }

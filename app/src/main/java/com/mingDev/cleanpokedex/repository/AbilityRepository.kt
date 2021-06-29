@@ -16,7 +16,7 @@ class AbilityRepository(
 ) {
     // download data from api
     suspend fun downloadAbility() = withContext(ioDispatcher) {
-        val apiResponse = pokeApi.getAbilityList(200, 0)
+        val apiResponse = pokeApi.getAbilityList(100, 0)
         val results: List<ResultUrl> = apiResponse.results
 
         val abilityList = mutableListOf<AbilityDto>()

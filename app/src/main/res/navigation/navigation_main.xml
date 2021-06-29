@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/pokemonItemsFragment"
-        android:name="com.mingDev.cleanpokedex.pokemonItems.PokemonItemsFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonItems.PokemonItemListFragment"
         android:label="Item Dex"
-        tools:layout="@layout/fragment_pokemon_items" />
+        tools:layout="@layout/fragment_pokemon_item_list" />
     <fragment
         android:id="@+id/caughtListFragment"
         android:name="com.mingDev.cleanpokedex.pokemonCaughtList.CaughtListFragment"

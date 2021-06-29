@@ -74,7 +74,7 @@ fun setPokemonName(textView: TextView, string: String) {
 }
 
 
-@BindingAdapter("imageUrl")
+@BindingAdapter("pokemonImageUrl")
 fun setGlideUrl(imageView: ImageView, pokemonDto: PokemonDto?) {
     pokemonDto?.let {
         Glide.with(imageView.context)
@@ -87,6 +87,19 @@ fun setGlideUrl(imageView: ImageView, pokemonDto: PokemonDto?) {
     }
 
 }
+
+@BindingAdapter("itemImageUrl")
+fun setItemIMageUrl(imageView: ImageView, url: String?) {
+    Glide.with(imageView.context)
+        .load(url)
+        .centerCrop()
+        .fitCenter()
+        .placeholder(R.drawable.poke_ball)
+        .into(imageView)
+
+
+}
+
 
 @BindingAdapter("progressAnimation")
 fun showProgressAnimation(progressBar: ProgressBar, progress: Int) {

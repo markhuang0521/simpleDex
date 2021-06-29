@@ -4,14 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.mingDev.cleanpokedex.database.entity.AbilityDto
-import com.mingDev.cleanpokedex.database.entity.MoveSetDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDetailDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDto
-import com.mingDev.cleanpokedex.network.responses.AbilityResponse
-import com.mingDev.cleanpokedex.network.responses.MoveSetResponse
-import com.mingDev.cleanpokedex.network.responses.PokemonInfo
-import com.mingDev.cleanpokedex.network.responses.PokemonSpecies
+import com.mingDev.cleanpokedex.database.entity.*
+import com.mingDev.cleanpokedex.network.responses.*
 
 
 const val STRING_ORDER_ASCENDING = "ascending"
@@ -207,6 +201,31 @@ fun AbilityResponse.toAbilityDto(): AbilityDto {
         pokemonLearnedList
 
     )
+}
+
+fun PokemonItemResponse.toItemDto(): PokemonItemDto {
+    var detailedEffect = " Not Available"
+    var shortEffect = " Not Available"
+
+    if (this.effect_entries.isNotEmpty()) {
+        val list = this.effect_entries.filter { it.language.name == "en" }
+        shortEffect = list[0].short_effect
+        detailedEffect = list[0].effect
+    }
+    val flavorText =
+        this.flavor_text_entries.filter {
+            it.language.name == "en"
+        }[0].text
+    return PokemonItemDto(
+        this.name,
+        this.id,
+        shortEffect,
+        detailedEffect,
+        flavorText,
+        this.sprites.default
+
+    )
+
 }
 
 

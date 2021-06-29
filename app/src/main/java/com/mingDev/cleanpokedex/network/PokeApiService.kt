@@ -27,6 +27,7 @@ private val retrofit = Retrofit.Builder()
 
 interface PokeApiService {
 
+    //    https://pokeapi.co/api/v2/pokemon/
     @GET("pokemon")
     suspend fun getPokemonList(
         @Query("limit") limit: Int = 0,
@@ -44,6 +45,7 @@ interface PokeApiService {
     suspend fun getPokemonById(@Path("id") id: Int): PokemonInfo
 
 
+    //    https://pokeapi.co/api/v2/move/
     @GET("move")
     suspend fun getMoveSetList(
         @Query("limit") limit: Int = 20,
@@ -53,6 +55,7 @@ interface PokeApiService {
     @GET("move/{name}")
     suspend fun getMoveByName(@Path("name") name: String): MoveSetResponse
 
+    //    https://pokeapi.co/api/v2/ability/
     @GET("ability")
     suspend fun getAbilityList(
         @Query("limit") limit: Int = 20,
@@ -62,8 +65,15 @@ interface PokeApiService {
     @GET("ability/{name}")
     suspend fun getAbilityByName(@Path("name") name: String): AbilityResponse
 
+    //    https://pokeapi.co/api/v2/item/1
+    @GET("item")
+    suspend fun getItemList(
+        @Query("limit") limit: Int = 20,
+        @Query("offset") offset: Int = 0
+    ): ApiResponse
 
-
+    @GET("item/{name}")
+    suspend fun getItemByName(@Path("name") name: String): PokemonItemResponse
 
 }
 

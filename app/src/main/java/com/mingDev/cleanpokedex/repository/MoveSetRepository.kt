@@ -18,7 +18,7 @@ class MoveSetRepository(
 ) {
     // download data from api
     suspend fun downloadMoveSets() = withContext(ioDispatcher) {
-        val apiResponse = pokeApi.getMoveSetList(200, 0)
+        val apiResponse = pokeApi.getMoveSetList(100, 0)
         val results: List<ResultUrl> = apiResponse.results
 
         val moveSetDto = mutableListOf<MoveSetDto>()

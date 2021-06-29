@@ -1,18 +1,17 @@
-package com.mingDev.cleanpokedex.pokemonAbility
+package com.mingDev.cleanpokedex.pokemonItems
+
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mingDev.cleanpokedex.database.entity.AbilityDto
-import com.mingDev.cleanpokedex.database.entity.MoveSetDto
 import com.mingDev.cleanpokedex.database.entity.PokemonDto
-import com.mingDev.cleanpokedex.repository.AbilityRepository
+import com.mingDev.cleanpokedex.database.entity.PokemonItemDto
+import com.mingDev.cleanpokedex.repository.PokemonItemRepository
 import com.mingDev.cleanpokedex.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class AbilityViewModel(private val repository: AbilityRepository) : ViewModel() {
-    val allAbilities = MutableLiveData<List<AbilityDto>>()
-    val selectedAbility = MutableLiveData<MoveSetDto>()
+class PokemonItemViewModel(private val repository: PokemonItemRepository) : ViewModel() {
+    val allAbilities = MutableLiveData<List<PokemonItemDto>>()
     val pokemonsLearnByMove = MutableLiveData<List<PokemonDto>>()
     val showLoading: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val showNoResult: SingleLiveEvent<Boolean> = SingleLiveEvent()
@@ -20,22 +19,21 @@ class AbilityViewModel(private val repository: AbilityRepository) : ViewModel() 
     init {
         viewModelScope.launch {
 //           repository.deleteAllMoveSet()
-            val num = repository.countAbilities()
+            val num = repository.countItems()
             if (num <= 0) {
                 showLoading.value = true
 
-                repository.downloadAbility()
-
+                repository.downloadItems()
             }
 
-            loadFullAbilities()
+            loadFullItems()
         }
     }
 
-    private fun loadFullAbilities() {
+    private fun loadFullItems() {
         viewModelScope.launch {
             showLoading.value = true
-            allAbilities.value = repository.getAllAbility()
+            allAbilities.value = repository.getAllItems()
             showLoading.postValue(false)
 
         }

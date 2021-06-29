@@ -45,7 +45,6 @@ class MoveListFragment : Fragment(), MoveSetListener {
         binding.viewModel = viewModel
         setUpObserver()
         setUpRecyclerView()
-        setupBottomSheetFragments()
     }
 
     private fun setUpObserver() {
@@ -66,9 +65,9 @@ class MoveListFragment : Fragment(), MoveSetListener {
 
     }
 
-    private fun setupBottomSheetFragments() {
-        moveDetailFragment = MoveListDetailFragment()
-    }
+//    private fun setupBottomSheetFragments() {
+//        moveDetailFragment = MoveListDetailFragment()
+//    }
 
     override fun onMoveSetClick(move: MoveSetDto) {
         viewModel.setMoveSet(move)

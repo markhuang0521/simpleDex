@@ -21,7 +21,7 @@ import com.mingDev.cleanpokedex.database.entity.*
         PokemonItemDto::class
     ],
 
-    version = 25,
+    version = 26,
     exportSchema = false
 )
 abstract class PokemonDatabase : RoomDatabase() {

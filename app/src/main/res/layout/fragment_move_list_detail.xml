@@ -30,7 +30,7 @@
                 backgroundColorByType="@{viewModel.selectedMove.type}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_margin="8dp"
                 android:elevation="10dp"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
                     android:padding="5dp"
                     android:text="@{viewModel.selectedMove.name}"
                     android:textAlignment="center"
-                    android:textSize="32sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -264,18 +264,18 @@
                         android:layout_gravity="center"
                         android:layout_margin="8dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="Game Description"
                         android:lineSpacingMultiplier="1.2"
+                        android:text="Game Description"
                         android:textAllCaps="true"
                         android:textColor="@color/water"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:padding="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginBottom="5dp"
+                        android:padding="5dp"
                         android:text="@{viewModel.selectedMove.shortEffect}"
                         android:textAlignment="center"
                         android:textSize="16dp"
@@ -312,16 +312,16 @@
                         android:textColor="@color/water"
                         android:textSize="20sp" />
 
-<!--scrolling view in fragment-->
+                    <!--scrolling view in fragment-->
                     <TextView
-                        android:lineSpacingMultiplier="1.2"
-                        android:padding="5dp"
                         android:id="@+id/tv_detail_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginBottom="5dp"
+                        android:lineSpacingMultiplier="1.2"
                         android:maxLines="5"
+                        android:padding="5dp"
                         android:scrollbars="vertical"
                         android:text="@{viewModel.selectedMove.detailEffect}"
                         android:textAlignment="center"

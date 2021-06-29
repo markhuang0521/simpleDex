@@ -9,6 +9,7 @@ data class PokemonItemDto(
     @PrimaryKey
     val name: String,
     val id: Int,
+    val shortEffect: String,
     val detailEffect: String,
     val flavorText: String,
     val imageUrl: String
