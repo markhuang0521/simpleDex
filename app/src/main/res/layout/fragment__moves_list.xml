@@ -33,7 +33,7 @@
                 style="@style/DetailTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5.7"
+                android:layout_weight="5.6"
                 android:gravity="center"
                 android:paddingStart="40dp"
                 android:text="Move Name"
@@ -45,7 +45,7 @@
                 android:id="@+id/tv_power"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.4"
+                android:layout_weight="1.5"
                 android:text="Power"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
