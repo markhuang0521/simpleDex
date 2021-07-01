@@ -1,3 +1,3 @@
 # simpleDex
 
-simple PokeDex using PokeAPI
+simple PokeDex using PokeAPI with Retrofit 
