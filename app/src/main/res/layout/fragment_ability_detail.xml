@@ -89,7 +89,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="8dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="in-depth Effect"
+                        android:text="@string/in_depth_effect"
                         android:textAllCaps="true"
                         android:textColor="@color/water"
                         android:textSize="20sp" />
