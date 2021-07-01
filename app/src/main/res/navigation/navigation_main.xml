@@ -61,7 +61,17 @@
             app:destination="@id/moveListDetailFragment" />
     </fragment>
     <fragment
+        tools:layout="@layout/fragment_ability_list"
         android:id="@+id/abilityListFragment"
         android:name="com.mingDev.cleanpokedex.pokemonAbility.AbilityListFragment"
-        android:label="AbilityListFragment" />
+        android:label="AbilityListFragment" >
+        <action
+            android:id="@+id/action_abilityListFragment_to_abilityDetailFragment"
+            app:destination="@id/abilityDetailFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_ability_detail"
+        android:id="@+id/abilityDetailFragment"
+        android:name="com.mingDev.cleanpokedex.ui.AbilityDetailFragment"
+        android:label="AbilityDetailFragment" />
 </navigation>

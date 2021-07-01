@@ -2,6 +2,7 @@ package com.mingDev.cleanpokedex.repository
 
 import com.mingDev.cleanpokedex.database.daos.AbilityDao
 import com.mingDev.cleanpokedex.database.entity.AbilityDto
+import com.mingDev.cleanpokedex.database.entity.PokemonDto
 import com.mingDev.cleanpokedex.network.PokeApiService
 import com.mingDev.cleanpokedex.network.responses.ResultUrl
 import com.mingDev.cleanpokedex.utils.toAbilityDto
@@ -33,10 +34,16 @@ class AbilityRepository(
         return@withContext abilityDao.getAllAbility()
     }
 
-    suspend fun getMoveByName(abilityName: String): AbilityDto =
+    suspend fun getAbilityByName(abilityName: String): AbilityDto =
         withContext(ioDispatcher) {
 
             return@withContext abilityDao.getAbilityByName(abilityName)
+        }
+
+    suspend fun getPokemonListByAbility(abilityName: String): List<PokemonDto> =
+        withContext(ioDispatcher) {
+
+            return@withContext abilityDao.getPokemonsByAbility(abilityName)
         }
 
     suspend fun countAbilities(): Int = withContext(ioDispatcher) {

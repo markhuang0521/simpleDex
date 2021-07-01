@@ -14,4 +14,12 @@ data class PokemonItemDto(
     val flavorText: String,
     val imageUrl: String
 
-)
+) {
+    fun displayDesc(): String {
+        if (shortEffect.isNotEmpty()) {
+            return shortEffect
+        }
+        return flavorText
+
+    }
+}

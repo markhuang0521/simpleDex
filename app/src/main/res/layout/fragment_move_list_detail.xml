@@ -25,34 +25,6 @@
             android:layout_height="wrap_content"
             tools:context=".ui.MoveListDetailFragment">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_move_name"
-                backgroundColorByType="@{viewModel.selectedMove.type}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_move_name"
-                    style="@style/DetailTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@{viewModel.selectedMove.name}"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="ace op"
-                    tools:textColor="@color/water" />
-            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_type"
@@ -66,7 +38,7 @@
                 app:cardBackgroundColor="@color/red"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_move_name"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".3">
 
                 <TextView
@@ -143,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Type"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/card_type"
                 app:layout_constraintStart_toStartOf="@id/card_type"
                 app:layout_constraintTop_toBottomOf="@id/card_type" />
@@ -154,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Contest"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/card_contest"
                 app:layout_constraintStart_toStartOf="@id/card_contest"
                 app:layout_constraintTop_toBottomOf="@id/card_contest" />
@@ -165,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Category"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/card_damage_type"
                 app:layout_constraintStart_toStartOf="@id/card_damage_type"
                 app:layout_constraintTop_toBottomOf="@id/card_damage_type" />
@@ -191,7 +163,7 @@
                 android:text="@{String.valueOf(viewModel.selectedMove.accuracy)}"
                 android:textAlignment="center"
                 android:textColor="@color/dark_grey"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/tv_power"
                 app:layout_constraintTop_toTopOf="@id/tv_power"
                 app:layout_constraintWidth_percent=".33"
@@ -204,7 +176,7 @@
                 android:text="@{String.valueOf(viewModel.selectedMove.pp)}"
                 android:textAlignment="center"
                 android:textColor="@color/dark_grey"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/tv_accuracy"
                 app:layout_constraintTop_toTopOf="@id/tv_power"
                 app:layout_constraintWidth_percent=".33"
@@ -215,8 +187,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="Power"
-                android:textSize="14dp"
+                android:text="@string/power"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_power"
                 app:layout_constraintStart_toStartOf="@id/tv_power"
                 app:layout_constraintTop_toBottomOf="@id/tv_power" />
@@ -226,8 +198,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="Accuracy"
-                android:textSize="14dp"
+                android:text="@string/accuracy"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_accuracy"
                 app:layout_constraintStart_toStartOf="@id/tv_accuracy"
                 app:layout_constraintTop_toBottomOf="@id/tv_accuracy" />
@@ -238,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="PP."
-                android:textSize="14dp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_pp"
                 app:layout_constraintStart_toStartOf="@id/tv_pp"
                 app:layout_constraintTop_toBottomOf="@id/tv_pp" />
@@ -265,7 +237,7 @@
                         android:layout_margin="8dp"
                         android:fontFamily="@font/roboto_bold"
                         android:lineSpacingMultiplier="1.2"
-                        android:text="Game Description"
+                        android:text="@string/game_description"
                         android:textAllCaps="true"
                         android:textColor="@color/water"
                         android:textSize="20sp" />
@@ -278,7 +250,7 @@
                         android:padding="5dp"
                         android:text="@{viewModel.selectedMove.shortEffect}"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         tools:text="1231223213" />
                 </LinearLayout>
 
@@ -306,7 +278,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="8dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="in-depth Effect"
+                        android:text="@string/in_depth_effect"
 
                         android:textAllCaps="true"
                         android:textColor="@color/water"
@@ -325,7 +297,7 @@
                         android:scrollbars="vertical"
                         android:text="@{viewModel.selectedMove.detailEffect}"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         tools:text="1231223213\n dasdasd" />
                 </LinearLayout>
 
@@ -345,12 +317,12 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_pokemon_learn_move"
-                backgroundColorByType="@{viewModel.selectedMove.type}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="10dp"
-                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@color/electric"
+                app:cardCornerRadius="5dp"
                 app:layout_constraintBottom_toTopOf="@id/recycler_pokemon_learned_list"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -362,7 +334,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/roboto_bold"
 
-                    android:padding="3dp"
+                    android:padding="5dp"
                     android:text="@{`pokemons that can learn  ` +viewModel.selectedMove.name}"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
@@ -374,7 +346,8 @@
                 android:id="@+id/recycler_pokemon_learned_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -390,7 +363,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="4dp"
                 android:indeterminate="true"
-                android:indeterminateTint="@color/psychic"
+                android:indeterminateTint="@color/electric"
                 app:layout_constraintBottom_toBottomOf="@id/recycler_pokemon_learned_list"
                 app:layout_constraintEnd_toEndOf="@id/recycler_pokemon_learned_list"
                 app:layout_constraintStart_toStartOf="@id/recycler_pokemon_learned_list"

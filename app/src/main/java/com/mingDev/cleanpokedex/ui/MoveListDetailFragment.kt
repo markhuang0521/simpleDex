@@ -31,7 +31,6 @@ class MoveListDetailFragment : BottomSheetDialogFragment(), PokemonListener {
     ): View? {
         binding = FragmentMoveListDetailBinding.inflate(inflater, container, false)
 //        showTitleBar(false)
-        setToolbarTitle("Move Detail")
         return binding.root
     }
 
@@ -40,6 +39,8 @@ class MoveListDetailFragment : BottomSheetDialogFragment(), PokemonListener {
 
         binding.lifecycleOwner = this
         binding.viewModel = moveSetViewModel
+        setToolbarTitle(moveSetViewModel.selectedMove.value?.name ?: "")
+
         // scrolling textview in fragment
         binding.tvDetailDesc.movementMethod = ScrollingMovementMethod()
         setUpObserver()
@@ -48,7 +49,6 @@ class MoveListDetailFragment : BottomSheetDialogFragment(), PokemonListener {
 
     private fun setUpObserver() {
         moveSetViewModel.pokemonsLearnByMove.observe(viewLifecycleOwner, Observer {
-            Timber.d("live data list" + it.toString())
             it?.let {
                 pokemonAdapter.submitList(it)
             }

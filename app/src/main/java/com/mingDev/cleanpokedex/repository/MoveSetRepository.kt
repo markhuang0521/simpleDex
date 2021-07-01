@@ -38,10 +38,6 @@ class MoveSetRepository(
     suspend fun getPokemonListByMove(moveName: String): List<PokemonDto> =
         withContext(ioDispatcher) {
 
-//            val move = getMoveByName(moveName)
-//
-//            val pokemons = getPokemonsByNameList(move.learnedPokemon)
-//            Timber.d("pokemon list" + pokemons.toString())
 
             return@withContext moveSetDao.getPokemonsByMove(moveName)
         }

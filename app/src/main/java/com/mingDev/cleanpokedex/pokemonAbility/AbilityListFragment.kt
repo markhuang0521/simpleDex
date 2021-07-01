@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mingDev.cleanpokedex.R
 import com.mingDev.cleanpokedex.database.entity.AbilityDto
 import com.mingDev.cleanpokedex.databinding.FragmentAbilityListBinding
 import com.mingDev.cleanpokedex.ui.AbilityAdapter
 import com.mingDev.cleanpokedex.ui.AbilityListener
-import com.mingDev.cleanpokedex.ui.MoveListDetailFragment
 import com.mingDev.cleanpokedex.utils.setToolbarColor
 import com.mingDev.cleanpokedex.utils.setToolbarTitle
 import org.koin.android.ext.android.inject
@@ -62,7 +62,9 @@ class AbilityListFragment : Fragment(), AbilityListener {
     }
 
     override fun onAbilityClick(ability: AbilityDto) {
-//        TODO("Not yet implemented")
+        viewModel.setAbility(ability)
+        findNavController().navigate(AbilityListFragmentDirections.actionAbilityListFragmentToAbilityDetailFragment())
+
     }
 
 }
