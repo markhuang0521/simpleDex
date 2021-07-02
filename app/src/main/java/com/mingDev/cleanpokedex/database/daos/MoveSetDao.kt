@@ -26,6 +26,9 @@ interface MoveSetDao {
     @Query(" SELECT * FROM tb_moveSets where name=:moveName LIMIT 1")
     fun getMoveByName(moveName: String): MoveSetDto
 
+    @Query("SELECT * FROM tb_moveSets where name LIKE '%' || :name || '%'  ")
+    fun searchMovesByName(name: String): List<MoveSetDto>
+
 
     fun getPokemonsByMove(moveName: String): List<PokemonDto> {
         val move = getMoveByName(moveName)

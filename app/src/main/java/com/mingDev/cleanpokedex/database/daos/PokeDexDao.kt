@@ -33,7 +33,7 @@ interface PokeDexDao {
     fun getAllPokemons(): List<PokemonDto>
 
     @Query("SELECT * FROM tb_pokemons where name in(:pokemonList) ORDER BY id")
-    fun getPokemonsByNameList(pokemonList: List<String>): List<PokemonDto>
+    fun getPokemonsByNameListOrderById(pokemonList: List<String>): List<PokemonDto>
 
     @Query("SELECT * FROM tb_pokemons where id=:id limit 1")
     suspend fun getPokemonById(id: Int): PokemonDto
@@ -64,7 +64,7 @@ interface PokeDexDao {
     fun filterPokemonsByGen(generation: String): List<PokemonDto>
 
     @RawQuery
-    fun getSortedPokemonByRawQuery(query: SupportSQLiteQuery?): List<PokemonDto>
+    fun getSortedPokemonByRawQuery(query: SupportSQLiteQuery): List<PokemonDto>
 
     fun getPokemonSortBy(sort: String, order: String): List<PokemonDto> {
 
@@ -77,6 +77,7 @@ interface PokeDexDao {
         return getSortedPokemonByRawQuery(query)
 
     }
+
 
 
 }

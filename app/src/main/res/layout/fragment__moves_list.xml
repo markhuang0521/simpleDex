@@ -15,6 +15,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".pokemonMove.MoveListFragment">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView_move_dex"
+            style="@style/SearchViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:foregroundTint="@color/fire"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/layout_text_moveSet"
@@ -26,14 +40,14 @@
             android:weightSum="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/searchView_move_dex">
 
             <TextView
                 android:id="@+id/tv_move_name"
                 style="@style/DetailTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5.6"
+                android:layout_weight="5.5"
                 android:gravity="center"
                 android:paddingStart="40dp"
                 android:text="Move Name"
@@ -45,7 +59,7 @@
                 android:id="@+id/tv_power"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.6"
                 android:text="Power"
                 android:textColor="@color/white"
                 android:textSize="14sp" />

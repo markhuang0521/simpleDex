@@ -21,6 +21,7 @@ import org.koin.android.ext.android.inject
 class PokemonListFragment : Fragment(), PokemonListener,
     PokemonTypesFragment.ClickListener, PokemonGenerationFragment.ClickListener,
     PokemonSortFragment.ClickListener {
+
     private lateinit var binding: FragmentPokemonListBinding
 
     private val viewModel: PokedexViewModel by inject()
@@ -72,11 +73,11 @@ class PokemonListFragment : Fragment(), PokemonListener,
                 viewModel.showNoResult.value = it.isNullOrEmpty()
             }
         })
-        viewModel.selectedPokemon.observe(viewLifecycleOwner, Observer {
-            it?.let {
-
-            }
-        })
+//        viewModel.selectedPokemon.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//
+//            }
+//        })
 
     }
 

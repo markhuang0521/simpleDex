@@ -56,6 +56,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SearchView
+            tools:visibility="visible"
+
             android:id="@+id/searchView_pokedex"
             style="@style/SearchViewStyle"
             android:layout_width="match_parent"
@@ -70,6 +72,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/item_pokemon"
             android:id="@+id/recycler_pokemon_list"
             pokemonLiveData="@{viewModel.curPokemonList}"
             android:layout_width="match_parent"
