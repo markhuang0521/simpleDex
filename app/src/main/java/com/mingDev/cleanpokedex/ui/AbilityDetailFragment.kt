@@ -70,7 +70,7 @@ class AbilityDetailFragment : Fragment(), PokemonListener {
         pokedexViewModel.setSelectedPokemon(pokemon)
         pokedexViewModel.setSelectedPokemonDetail(pokemon.speciesName)
         findNavController().navigate(
-            MoveListDetailFragmentDirections.actionMoveListDetailFragmentToPokemonDetailActivity(
+            AbilityDetailFragmentDirections.actionAbilityDetailFragmentToPokemonDetailActivity(
                 pokemon.types[0]
             )
         )

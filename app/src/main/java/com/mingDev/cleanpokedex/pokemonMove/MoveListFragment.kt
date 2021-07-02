@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mingDev.cleanpokedex.R
 import com.mingDev.cleanpokedex.database.entity.MoveSetDto
 import com.mingDev.cleanpokedex.databinding.FragmentMovesListBinding
-import com.mingDev.cleanpokedex.ui.MoveListDetailFragment
 import com.mingDev.cleanpokedex.ui.MoveSetAdapter
 import com.mingDev.cleanpokedex.ui.MoveSetListener
 import com.mingDev.cleanpokedex.utils.setToolbarColor
@@ -25,8 +24,6 @@ class MoveListFragment : Fragment(), MoveSetListener {
     private lateinit var binding: FragmentMovesListBinding
     private val viewModel: MoveSetViewModel by inject()
     private lateinit var moveSetAdapter: MoveSetAdapter
-
-    private lateinit var moveDetailFragment: MoveListDetailFragment
 
 
     override fun onCreateView(
@@ -45,6 +42,7 @@ class MoveListFragment : Fragment(), MoveSetListener {
         binding.viewModel = viewModel
         setUpObserver()
         setUpRecyclerView()
+        setupSearch()
     }
 
     private fun setUpObserver() {
@@ -64,6 +62,42 @@ class MoveListFragment : Fragment(), MoveSetListener {
         }
 
     }
+
+    private fun setupSearch() {
+        binding.fabMoveSearch.setOnClickListener {
+
+            binding.searchViewMoveDex.isIconified = false
+
+            binding.searchViewMoveDex.visibility = View.VISIBLE
+
+            binding.searchViewMoveDex.setOnCloseListener {
+                binding.searchViewMoveDex.visibility = View.GONE
+                false
+            }
+
+            binding.searchViewMoveDex.setOnQueryTextListener(object :
+                SearchView.OnQueryTextListener {
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let {
+                        viewModel.searchMovesByName(query)
+                    }
+                    binding.searchViewMoveDex.visibility = View.GONE
+
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let {
+                        viewModel.searchMovesByName(newText)
+                    }
+                    return false
+                }
+            })
+        }
+
+    }
+
 
 //    private fun setupBottomSheetFragments() {
 //        moveDetailFragment = MoveListDetailFragment()

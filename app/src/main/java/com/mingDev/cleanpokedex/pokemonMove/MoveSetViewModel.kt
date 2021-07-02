@@ -8,7 +8,6 @@ import com.mingDev.cleanpokedex.database.entity.PokemonDto
 import com.mingDev.cleanpokedex.repository.MoveSetRepository
 import com.mingDev.cleanpokedex.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() {
 
@@ -63,4 +62,11 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
 
     }
 
+    fun searchMovesByName(name: String) {
+        viewModelScope.launch {
+            moveSets.value = repository.searchMovesByName(name)
+
+        }
+
+    }
 }

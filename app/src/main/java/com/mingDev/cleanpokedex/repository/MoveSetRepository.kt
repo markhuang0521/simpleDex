@@ -42,26 +42,18 @@ class MoveSetRepository(
             return@withContext moveSetDao.getPokemonsByMove(moveName)
         }
 
-    suspend fun getMoveByName(moveName: String): MoveSetDto =
+    suspend fun searchMovesByName(moveName: String): List<MoveSetDto> =
         withContext(ioDispatcher) {
 
-            return@withContext moveSetDao.getMoveByName(moveName)
+            return@withContext moveSetDao.searchMovesByName(moveName)
         }
 
-    suspend fun getPokemonsByNameList(list: List<String>): List<PokemonDto> =
-        withContext(ioDispatcher) {
-
-            return@withContext moveSetDao.getPokemonsByNameList(list)
-        }
 
     suspend fun countMoveSets(): Int = withContext(ioDispatcher) {
         return@withContext moveSetDao.countMoveSets()
 
     }
 
-    suspend fun deleteAllMoveSet() = withContext(ioDispatcher) {
-        moveSetDao.deleteAllMoveSet()
-    }
 
 }
 

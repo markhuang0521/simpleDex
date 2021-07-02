@@ -22,7 +22,8 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
     val selectedMoveSet = MutableLiveData<List<MoveSetDto>>()
     val showLoading: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val showNoResult: SingleLiveEvent<Boolean> = SingleLiveEvent()
-
+    val selectedSort = MutableLiveData<String>()
+    val selectedOrder = MutableLiveData<String>()
 
     init {
         viewModelScope.launch {
@@ -43,10 +44,16 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
     }
 
     fun refreshCurList() {
+        Timber.d("current sorted pokemon list" + curPokemonList.value.toString())
+
         if (!curPokemonList.value.isNullOrEmpty()) {
+
             val list = curPokemonList.value!!.map { it.name }
+            Timber.d("current sorted pokemon list2" + list.toString())
+
             loadSelectedPokemons(list)
         } else {
+
             loadFullPokeDex()
 
         }
@@ -94,12 +101,19 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
         }
     }
 
+    fun pokemonSort(sort: String, order: String) {
+
+        viewModelScope.launch {
+            curPokemonList.value = repository.getPokemonSortBy(sort, order)
+
+
+        }
+    }
 
     fun searchPokemonsByName(name: String) {
         viewModelScope.launch {
 
             val result = repository.searchPokemonsByName(name)
-            showNoResult.value = result.isNotEmpty()
             curPokemonList.value = result
         }
     }
@@ -141,17 +155,6 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
 
         }
         refreshCurList()
-
-
-    }
-
-    fun pokemonSort(sort: String, order: String) {
-        viewModelScope.launch {
-            Timber.d(" sort: ${sort} order: $order")
-            curPokemonList.value = repository.getPokemonSortBy(sort, order)
-
-        }
-        Timber.d(curPokemonList.value.toString())
     }
 
 

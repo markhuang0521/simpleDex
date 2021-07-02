@@ -73,5 +73,9 @@
         tools:layout="@layout/fragment_ability_detail"
         android:id="@+id/abilityDetailFragment"
         android:name="com.mingDev.cleanpokedex.ui.AbilityDetailFragment"
-        android:label="AbilityDetailFragment" />
+        android:label="AbilityDetailFragment" >
+        <action
+            android:id="@+id/action_abilityDetailFragment_to_pokemonDetailActivity"
+            app:destination="@id/pokemonDetailActivity" />
+    </fragment>
 </navigation>

@@ -117,7 +117,7 @@ class PokemonRepository(
     suspend fun getSelectedPokemons(pokemonList: List<String>): List<PokemonDto> =
         withContext(ioDispatcher) {
 
-            return@withContext pokeDexDao.getPokemonsByNameList(pokemonList)
+            return@withContext pokeDexDao.getPokemonsByNameListOrderById(pokemonList)
         }
 
     // get moves from
