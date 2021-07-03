@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CleanPokedex</string>
+    <string name="app_name">CleanDex</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_label">Pokedex</string>
     <string name="search_hint">search pokemon name or ID</string>
