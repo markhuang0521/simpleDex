@@ -46,7 +46,7 @@ class MoveListFragment : Fragment(), MoveSetListener {
     }
 
     private fun setUpObserver() {
-        viewModel.moveSets.observe(viewLifecycleOwner, Observer {
+        viewModel.curMoveSets.observe(viewLifecycleOwner, Observer {
             it?.let {
                 moveSetAdapter.submitList(it)
             }

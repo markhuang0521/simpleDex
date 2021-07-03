@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() {
 
 
-    val moveSets = MutableLiveData<List<MoveSetDto>>()
+    val curMoveSets = MutableLiveData<List<MoveSetDto>>()
     val selectedMove = MutableLiveData<MoveSetDto>()
     val pokemonsLearnByMove = MutableLiveData<List<PokemonDto>>()
     val showLoading: SingleLiveEvent<Boolean> = SingleLiveEvent()
@@ -30,7 +30,7 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
 
             }
 
-            loadFullMoveSet()
+            refreshCurList()
         }
     }
 
@@ -51,11 +51,29 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
 
         }
     }
+    fun refreshCurList() {
+
+        if (!curMoveSets.value.isNullOrEmpty()) {
+
+            val list = curMoveSets.value!!.map { it.name }
+
+            loadSelectedMoves(list)
+        } else {
+
+            loadFullMoveSet()
+
+        }
+    }
+
+    private fun loadSelectedMoves(list: List<String>) {
+
+
+    }
 
     fun loadFullMoveSet() {
         viewModelScope.launch {
             showLoading.value = true
-            moveSets.value = repository.getAllMoveSet()
+            curMoveSets.value = repository.getAllMoveSet()
             showLoading.postValue(false)
 
         }
@@ -64,7 +82,7 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
 
     fun searchMovesByName(name: String) {
         viewModelScope.launch {
-            moveSets.value = repository.searchMovesByName(name)
+            curMoveSets.value = repository.searchMovesByName(name)
 
         }
 

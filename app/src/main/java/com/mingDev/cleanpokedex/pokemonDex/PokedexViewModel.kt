@@ -44,12 +44,10 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
     }
 
     fun refreshCurList() {
-        Timber.d("current sorted pokemon list" + curPokemonList.value.toString())
 
         if (!curPokemonList.value.isNullOrEmpty()) {
 
             val list = curPokemonList.value!!.map { it.name }
-            Timber.d("current sorted pokemon list2" + list.toString())
 
             loadSelectedPokemons(list)
         } else {
