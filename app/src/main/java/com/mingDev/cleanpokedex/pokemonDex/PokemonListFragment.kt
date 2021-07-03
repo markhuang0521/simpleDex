@@ -166,7 +166,6 @@ class PokemonListFragment : Fragment(), PokemonListener,
 
     override fun onResume() {
         super.onResume()
-        viewModel.refreshCurList()
 
     }
 

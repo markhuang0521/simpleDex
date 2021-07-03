@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -42,6 +43,7 @@ class AbilityListFragment : Fragment(), AbilityListener {
         binding.viewModel = viewModel
         setUpObserver()
         setUpRecyclerView()
+        setupSearch()
     }
 
     private fun setUpRecyclerView() {
@@ -60,6 +62,42 @@ class AbilityListFragment : Fragment(), AbilityListener {
             }
         })
     }
+
+    private fun setupSearch() {
+        binding.fabMoveSearch.setOnClickListener {
+
+            binding.searchViewAbilityDex.isIconified = false
+
+            binding.searchViewAbilityDex.visibility = View.VISIBLE
+
+            binding.searchViewAbilityDex.setOnCloseListener {
+                binding.searchViewAbilityDex.visibility = View.GONE
+                false
+            }
+
+            binding.searchViewAbilityDex.setOnQueryTextListener(object :
+                SearchView.OnQueryTextListener {
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let {
+                        viewModel.searchAbilitiesByName(query)
+                    }
+                    binding.searchViewAbilityDex.visibility = View.GONE
+
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let {
+                        viewModel.searchAbilitiesByName(newText)
+                    }
+                    return false
+                }
+            })
+        }
+
+    }
+
 
     override fun onAbilityClick(ability: AbilityDto) {
         viewModel.setAbility(ability)

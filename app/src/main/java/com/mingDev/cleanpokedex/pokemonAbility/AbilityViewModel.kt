@@ -56,4 +56,11 @@ class AbilityViewModel(private val repository: AbilityRepository) : ViewModel() 
 
         }
     }
+
+    fun searchAbilitiesByName(name: String) {
+        viewModelScope.launch {
+            allAbilities.value = repository.searchAbilitiesByName(name)
+
+        }
+    }
 }

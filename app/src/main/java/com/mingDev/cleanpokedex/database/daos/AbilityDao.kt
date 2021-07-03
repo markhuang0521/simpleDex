@@ -16,6 +16,9 @@ interface AbilityDao {
     @Query("SELECT * FROM tb_abilities")
     fun getAllAbility(): List<AbilityDto>
 
+    @Query("SELECT * FROM tb_abilities where name LIKE '%' || :name || '%'  ")
+    fun searchAbilitiesByName(name: String): List<AbilityDto>
+
     @Query("SELECT * FROM tb_abilities where name=:abilityName LIMIT 1")
     fun getAbilityByName(abilityName: String): AbilityDto
 
@@ -30,5 +33,6 @@ interface AbilityDao {
 
     @Query("SELECT COUNT(*)  FROM tb_abilities  ")
     fun countAbilities(): Int
+
 
 }

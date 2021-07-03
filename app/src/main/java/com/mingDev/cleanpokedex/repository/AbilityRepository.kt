@@ -51,4 +51,9 @@ class AbilityRepository(
 
     }
 
+    suspend fun searchAbilitiesByName(name: String): List<AbilityDto> = withContext(ioDispatcher) {
+        return@withContext abilityDao.searchAbilitiesByName(name)
+
+    }
+
 }

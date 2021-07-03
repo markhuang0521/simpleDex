@@ -11,24 +11,24 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/transparent_gray"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/transparent_gray"
         tools:context=".pokemonMove.MoveListFragment">
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView_move_dex"
             style="@style/SearchViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:background="@color/white"
             android:foregroundTint="@color/fire"
             android:visibility="gone"
-            tools:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/layout_text_moveSet"

@@ -13,6 +13,7 @@ import com.mingDev.cleanpokedex.databinding.FragmentCaughtListBinding
 import com.mingDev.cleanpokedex.pokemonDex.PokedexViewModel
 import com.mingDev.cleanpokedex.ui.PokemonAdapter
 import com.mingDev.cleanpokedex.ui.PokemonListener
+import com.mingDev.cleanpokedex.utils.setToolbarTitle
 import org.koin.android.ext.android.inject
 
 
@@ -29,6 +30,7 @@ class CaughtListFragment : Fragment(), PokemonListener {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCaughtListBinding.inflate(inflater, container, false)
+        setToolbarTitle("Catch List")
         return binding.root
     }
 
