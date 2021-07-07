@@ -20,4 +20,8 @@
         android:name="com.mingDev.cleanpokedex.pokemonDetail.DetailStatsFragment"
         android:label="DetailStatsFragment"
         tools:layout="@layout/fragment_detail_stat" />
+    <fragment
+        android:id="@+id/detailEvolutionFragment"
+        android:name="com.mingDev.cleanpokedex.pokemonDetail.DetailEvolutionFragment"
+        android:label="DetailEvolutionFragment" />
 </navigation>

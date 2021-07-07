@@ -3,10 +3,7 @@ package com.mingDev.cleanpokedex.pokemonDex
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mingDev.cleanpokedex.database.entity.MoveSetDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDetailDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDtoUpdate
+import com.mingDev.cleanpokedex.database.entity.*
 import com.mingDev.cleanpokedex.repository.PokemonRepository
 import com.mingDev.cleanpokedex.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
@@ -20,6 +17,7 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
     val selectedPokemon = MutableLiveData<PokemonDto>()
     val selectedPokemonDetail = MutableLiveData<PokemonDetailDto>()
     val selectedMoveSet = MutableLiveData<List<MoveSetDto>>()
+    val selectedEvolution = MutableLiveData<EvolutionChainDto>()
     val showLoading: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val showNoResult: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val selectedSort = MutableLiveData<String>()
@@ -46,10 +44,13 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
     fun refreshCurList() {
 
         if (!curPokemonList.value.isNullOrEmpty()) {
+            showLoading.value = true
 
             val list = curPokemonList.value!!.map { it.name }
 
             loadSelectedPokemons(list)
+            showLoading.postValue(false)
+
         } else {
 
             loadFullPokeDex()
@@ -64,6 +65,16 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
             curPokemonList.value = repository.getAllPokemons()
             showLoading.postValue(false)
 
+        }
+    }
+
+    fun getPokemonEvolution() {
+        selectedPokemonDetail.value?.let {
+            viewModelScope.launch {
+                Timber.d("evo id" + it.evoIndex.toString())
+                selectedEvolution.value = repository.getEvolutionChainById(it.evoIndex!!)
+
+            }
         }
     }
 
@@ -141,6 +152,7 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
         viewModelScope.launch {
 
             selectedPokemonDetail.value = repository.getPokemonDetailByName(speciesName)
+            getPokemonEvolution()
         }
     }
 

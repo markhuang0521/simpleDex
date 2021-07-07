@@ -5,21 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.mingDev.cleanpokedex.R
+import com.mingDev.cleanpokedex.databinding.FragmentDetailMoreBinding
+import com.mingDev.cleanpokedex.pokemonDex.PokedexViewModel
+import org.koin.android.ext.android.inject
 
 
 class DetailMoreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentDetailMoreBinding
+    private val viewModel: PokedexViewModel by inject()
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_more, container, false)
+        binding = FragmentDetailMoreBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
 
 }

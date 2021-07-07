@@ -3,16 +3,19 @@ package com.mingDev.cleanpokedex.database.daos
 import androidx.room.*
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
-import com.mingDev.cleanpokedex.database.entity.MoveSetDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDetailDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDto
-import com.mingDev.cleanpokedex.database.entity.PokemonDtoUpdate
+import com.mingDev.cleanpokedex.database.entity.*
 import com.mingDev.cleanpokedex.utils.STRING_ORDER_ASCENDING
 
 
 @Dao
 interface PokeDexDao {
 
+    // get evolution chain from tb_evolution
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertEvolutionChain(evolutionChainDto: EvolutionChainDto)
+
+    @Query("SELECT * FROM tb_evolution where id=:id limit 1")
+    suspend fun getEvolutionChainById(id: Int): EvolutionChainDto?
 
     // get species from tb_species
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -41,6 +44,8 @@ interface PokeDexDao {
     @Query("SELECT * FROM tb_pokemons where name=:name limit 1")
     suspend fun getPokemonByName(name: String): PokemonDto
 
+    @Query("SELECT imageUrl FROM tb_pokemons where speciesName=:name limit 1")
+    suspend fun getPokemonImageByName(name: String?): String?
 
     @Query("Delete  FROM tb_pokemons")
     suspend fun deleteAllPokemons()
@@ -77,7 +82,6 @@ interface PokeDexDao {
         return getSortedPokemonByRawQuery(query)
 
     }
-
 
 
 }

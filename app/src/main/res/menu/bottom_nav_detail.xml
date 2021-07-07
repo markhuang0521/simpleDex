@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_fire_white"
         android:title="Moves" />
     <item
-        android:id="@+id/dasdasd"
+        android:id="@+id/detailEvolutionFragment"
         android:icon="@drawable/ic_ability_white"
         android:title="Evolution" />
 

@@ -2,16 +2,20 @@ package com.mingDev.cleanpokedex.repository
 
 import com.mingDev.cleanpokedex.database.*
 import com.mingDev.cleanpokedex.database.daos.PokeDexDao
+import com.mingDev.cleanpokedex.database.entity.EvolutionChainDto
 import com.mingDev.cleanpokedex.database.entity.PokemonDetailDto
 import com.mingDev.cleanpokedex.database.entity.PokemonDto
 import com.mingDev.cleanpokedex.database.entity.PokemonDtoUpdate
 import com.mingDev.cleanpokedex.network.PokeApiService
+import com.mingDev.cleanpokedex.network.responses.EvolutionResponse
 import com.mingDev.cleanpokedex.network.responses.ResultUrl
 import com.mingDev.cleanpokedex.utils.toDetailDto
+import com.mingDev.cleanpokedex.utils.toEvolutionDto
 import com.mingDev.cleanpokedex.utils.toPokemonDto
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class PokemonRepository(
     private val pokeApi: PokeApiService,
@@ -22,7 +26,7 @@ class PokemonRepository(
     // fetch data from api
 
     suspend fun downloadPokedex() = withContext(ioDispatcher) {
-        val response = pokeApi.getPokemonList(100, 930)
+        val response = pokeApi.getPokemonList(100, 0)
         val results: List<ResultUrl> = response.results
         val pokemonDtos = mutableListOf<PokemonDto>()
         val pokemonDetailDtos = mutableListOf<PokemonDetailDto>()
@@ -125,5 +129,33 @@ class PokemonRepository(
         return@withContext pokeDexDao.getMovesByList(list)
     }
 
+    suspend fun getPokemonImageByName(name: String?): String? = withContext(ioDispatcher) {
+        return@withContext pokeDexDao.getPokemonImageByName(name)
+    }
+
+    suspend fun downloadEvolutionChainById(id: Int) = withContext(ioDispatcher) {
+        val evolutionResponse: EvolutionResponse = pokeApi.getEvolutionChainById(id)
+        val evolutionChainDto = evolutionResponse.toEvolutionDto()
+        val image1 = getPokemonImageByName(evolutionChainDto.startingPokemon)
+        Timber.d("start image " + image1)
+        evolutionChainDto.startingPokemonImageUrl = image1
+
+        evolutionChainDto.evo1PokemonImageUrl = getPokemonImageByName(evolutionChainDto.evo1Pokemon)
+
+        evolutionChainDto.evo2PokemonImageUrl = getPokemonImageByName(evolutionChainDto.evo2Pokemon)
+
+        pokeDexDao.insertEvolutionChain(evolutionChainDto)
+    }
+
+    suspend fun getEvolutionChainById(id: Int): EvolutionChainDto = withContext(ioDispatcher) {
+        var evolutionChainDto = pokeDexDao.getEvolutionChainById(id)
+
+        if (evolutionChainDto == null) {
+
+            downloadEvolutionChainById(id)
+            evolutionChainDto = pokeDexDao.getEvolutionChainById(id)
+        }
+        return@withContext evolutionChainDto!!
+    }
 
 }
