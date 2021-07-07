@@ -11,7 +11,10 @@ data class PokemonDtoUpdate(
     var isImageShown: Boolean
 
 )
-
+//val imageUrl =
+//    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"
+//val backUpImageUrl =
+//    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png"
 @Entity(tableName = "tb_pokemons")
 @Parcelize
 data class PokemonDto(
@@ -20,6 +23,7 @@ data class PokemonDto(
     val speciesName: String,
     val id: Int,
     val idString: String,
+
     val imageUrl: String? = null,
     var isImageShown: Boolean = true,
     val backUpImageUrl: String? = null,

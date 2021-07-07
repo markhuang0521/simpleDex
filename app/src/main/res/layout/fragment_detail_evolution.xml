@@ -1,21 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.mingDev.cleanpokedex.pokemonDex.PokedexViewModel" />
+
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        layoutBackgroundColorByType="@{viewModel.selectedPokemon.types[0]}"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".pokemonDetail.DetailEvolutionFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_evo1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="8dp"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
-    </FrameLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/iv_poke_1"
+                    evoImageUrl="@{viewModel.selectedEvolution.startingPokemonImageUrl}"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="pokemon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/type_poison" />
+
+                <TextView
+                    android:id="@+id/tv_level_trigger"
+                    style="@style/DetailTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_arrow_forward"
+                    android:text="@{viewModel.selectedEvolution.formatEvo1Condition()}"
+                    android:textColor="@color/dark_grey"
+                    app:layout_constraintBottom_toTopOf="@+id/ic_arrow"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_poke_2"
+                    app:layout_constraintStart_toEndOf="@id/iv_poke_1"
+                    app:layout_constraintTop_toTopOf="@id/iv_poke_1"
+                    tools:text="123213123" />
+
+                <ImageView
+                    android:id="@+id/ic_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_forward"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_poke_2"
+                    app:layout_constraintStart_toEndOf="@id/iv_poke_1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_level_trigger" />
+
+                <ImageView
+                    android:id="@+id/iv_poke_2"
+                    evoImageUrl="@{viewModel.selectedEvolution.evo1PokemonImageUrl}"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="pokemon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/type_dragon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_evo2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="8dp"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_evo1"
+            tools:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/iv_poke_3"
+                    evoImageUrl="@{viewModel.selectedEvolution.evo1PokemonImageUrl}"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="pokemon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/type_poison" />
+
+                <TextView
+                    android:id="@+id/tv_evo2_trigger"
+                    style="@style/DetailTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_arrow_forward"
+                    android:text="@{viewModel.selectedEvolution.formatEvo2Condition()}"
+                    android:textColor="@color/dark_grey"
+                    app:layout_constraintBottom_toTopOf="@+id/ic_arrow2"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_poke_4"
+                    app:layout_constraintStart_toEndOf="@id/iv_poke_3"
+                    app:layout_constraintTop_toTopOf="@id/iv_poke_3" />
+
+                <ImageView
+                    android:id="@+id/ic_arrow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_forward"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_poke_4"
+                    app:layout_constraintStart_toEndOf="@id/iv_poke_3"
+                    app:layout_constraintTop_toBottomOf="@id/tv_evo2_trigger" />
+
+                <ImageView
+                    android:id="@+id/iv_poke_4"
+                    evoImageUrl="@{viewModel.selectedEvolution.evo2PokemonImageUrl}"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="pokemon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/type_dragon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -27,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_centerInParent="true"
             android:layout_marginTop="4dp"
             android:indeterminate="true"
             android:indeterminateTint="@color/psychic"
@@ -38,27 +37,26 @@
             tools:visibility="visible" />
 
         <!--        no search result text-->
-        <TextView
-            android:id="@+id/text_no_search_result"
-            style="@style/TextAppearance.AppCompat.Title"
-            viewVisible="@{viewModel.showNoResult}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/progressBar"
-            android:layout_centerInParent="true"
-            android:layout_margin="10dp"
-            android:lineSpacingMultiplier="1.5"
-            android:text="@string/no_pokemon_search_result"
-            android:textColor="@color/water"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/text_no_search_result"-->
+        <!--            style="@style/TextAppearance.AppCompat.Title"-->
+        <!--            viewVisible="@{viewModel.showNoResult}"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/progressBar"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:lineSpacingMultiplier="1.5"-->
+        <!--            android:text="@string/no_pokemon_search_result"-->
+        <!--            android:textColor="@color/water"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <androidx.appcompat.widget.SearchView
-            tools:visibility="visible"
-
             android:id="@+id/searchView_pokedex"
+
             style="@style/SearchViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,12 +67,11 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/item_pokemon"
             android:id="@+id/recycler_pokemon_list"
-            pokemonLiveData="@{viewModel.curPokemonList}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
@@ -82,7 +79,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView_pokedex" />
+            app:layout_constraintTop_toBottomOf="@+id/searchView_pokedex"
+            />
 
 
         <com.nambimobile.widgets.efab.ExpandableFabLayout

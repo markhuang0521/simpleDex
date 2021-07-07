@@ -70,7 +70,6 @@ class PokemonListFragment : Fragment(), PokemonListener,
         viewModel.curPokemonList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 pokeDexAdapter.submitList(it)
-                viewModel.showNoResult.value = it.isNullOrEmpty()
             }
         })
 //        viewModel.selectedPokemon.observe(viewLifecycleOwner, Observer {
@@ -156,16 +155,11 @@ class PokemonListFragment : Fragment(), PokemonListener,
 
     private fun setUpRecyclerView() {
         pokeDexAdapter = PokemonAdapter(this)
+        viewModel.refreshCurList()
         binding.recyclerPokemonList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = pokeDexAdapter
         }
-
-    }
-
-
-    override fun onResume() {
-        super.onResume()
 
     }
 

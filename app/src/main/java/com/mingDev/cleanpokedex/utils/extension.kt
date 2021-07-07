@@ -11,6 +11,14 @@ import com.mingDev.cleanpokedex.network.responses.*
 const val STRING_ORDER_ASCENDING = "ascending"
 const val STRING_ORDER_DESCENDING = "descending"
 
+enum class EvoTriggerEnum(val desc: String) {
+    LevelUp("level-up"),
+    Trade("trade"),
+    UerItem("use-item"),
+    Shed("shed"),
+    Other("other")
+}
+
 
 fun Fragment.setToolbarTitle(title: String = "") {
     if (activity is AppCompatActivity) {
@@ -227,6 +235,62 @@ fun PokemonItemResponse.toItemDto(): PokemonItemDto {
     )
 
 }
+
+fun EvolutionResponse.toEvolutionDto(): EvolutionChainDto {
+    val startPokemon = this.chain.species.name
+    val evo1 = this.chain.evolves_to
+    var evo1Pokemon: String? = null
+    var evo1Trigger: String? = null
+    var evo1Condition: String? = null
+    if (!evo1.isNullOrEmpty()) {
+        val evo1Detail: EvolutionDetail? = evo1[0]?.evolution_details?.get(0)
+        evo1Pokemon = evo1[0]?.species?.name
+        evo1Trigger = evo1Detail?.trigger?.name
+        if (!evo1Trigger.isNullOrEmpty()) {
+            evo1Condition = when (evo1Trigger) {
+                EvoTriggerEnum.LevelUp.desc -> evo1Detail?.min_level.toString()
+                EvoTriggerEnum.Trade.desc -> "trade"
+                EvoTriggerEnum.UerItem.desc -> evo1Detail?.item?.name
+                EvoTriggerEnum.Other.desc -> "Not Available"
+                EvoTriggerEnum.Shed.desc -> "shed"
+                else -> null
+            }
+        }
+    }
+
+
+    val evo2 = evo1[0]?.evolves_to
+    var evo2Pokemon: String? = null
+    var evo2Trigger: String? = null
+    var evo2Condition: String? = null
+    if (!evo2.isNullOrEmpty()) {
+        val evo2Detail: EvolutionDetail? = evo2[0].evolution_details?.get(0)
+        evo2Pokemon = evo2[0]?.species?.name
+        evo2Trigger = evo2Detail?.trigger?.name
+        if (!evo2Trigger.isNullOrEmpty()) {
+            evo2Condition = when (evo1Trigger) {
+                EvoTriggerEnum.LevelUp.desc -> evo2Detail?.min_level.toString()
+                EvoTriggerEnum.Trade.desc -> "trade"
+                EvoTriggerEnum.UerItem.desc -> evo2Detail?.item?.name
+                EvoTriggerEnum.Other.desc -> "Not Available"
+                EvoTriggerEnum.Shed.desc -> "shed"
+                else -> null
+            }
+        }
+    }
+
+    return EvolutionChainDto(
+        id = this.id,
+        startingPokemon = startPokemon,
+        evo1Pokemon = evo1Pokemon,
+        evo1Trigger = evo1Trigger,
+        evo1Condition = evo1Condition,
+        evo2Pokemon = evo2Pokemon,
+        evo2Condition = evo2Condition,
+        evo2Trigger = evo2Trigger
+    )
+}
+
 
 
 

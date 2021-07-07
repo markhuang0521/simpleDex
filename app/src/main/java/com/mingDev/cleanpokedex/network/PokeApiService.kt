@@ -75,6 +75,11 @@ interface PokeApiService {
     @GET("item/{name}")
     suspend fun getItemByName(@Path("name") name: String): PokemonItemResponse
 
+
+    //    https://pokeapi.co/api/v2/evolution-chain/1/
+    @GET("evolution-chain/{id}")
+    suspend fun getEvolutionChainById(@Path("id") id: Int): EvolutionResponse
+
 }
 
 //object PokeApi {

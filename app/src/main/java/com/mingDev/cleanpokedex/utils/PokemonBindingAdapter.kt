@@ -73,6 +73,33 @@ fun setPokemonName(textView: TextView, string: String) {
     }
 }
 
+@BindingAdapter("evoImageUrl")
+fun setGlideImageUrl(imageView: ImageView, imageUrl: String?) {
+    imageUrl?.let {
+        Glide.with(imageView.context)
+            .load(imageUrl)
+            .centerCrop()
+            .fitCenter()
+            .placeholder(R.drawable.poke_ball)
+            .error(R.drawable.poke_ball)
+            .into(imageView)
+    }
+
+}
+
+@BindingAdapter("eggGroup2")
+fun setVisible(textView: TextView, list: List<String>?) {
+    list?.let {
+        if (list.size > 1) {
+            textView.visibility = View.VISIBLE
+            textView.text = list[1]
+        } else {
+            textView.visibility = View.GONE
+
+        }
+    }
+}
+
 
 @BindingAdapter("pokemonImageUrl")
 fun setGlideUrl(imageView: ImageView, pokemonDto: PokemonDto?) {

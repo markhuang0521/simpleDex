@@ -18,10 +18,11 @@ import com.mingDev.cleanpokedex.database.entity.*
         PokemonDetailDto::class,
         MoveSetDto::class,
         AbilityDto::class,
-        PokemonItemDto::class
+        PokemonItemDto::class,
+        EvolutionChainDto::class
     ],
 
-    version = 26,
+    version = 28,
     exportSchema = false
 )
 abstract class PokemonDatabase : RoomDatabase() {
