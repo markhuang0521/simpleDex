@@ -242,6 +242,9 @@ fun EvolutionResponse.toEvolutionDto(): EvolutionChainDto {
     var evo1Pokemon: String? = null
     var evo1Trigger: String? = null
     var evo1Condition: String? = null
+    var evo2Pokemon: String? = null
+    var evo2Trigger: String? = null
+    var evo2Condition: String? = null
     if (!evo1.isNullOrEmpty()) {
         val evo1Detail: EvolutionDetail? = evo1[0]?.evolution_details?.get(0)
         evo1Pokemon = evo1[0]?.species?.name
@@ -256,28 +259,27 @@ fun EvolutionResponse.toEvolutionDto(): EvolutionChainDto {
                 else -> null
             }
         }
-    }
+        val evo2 = evo1[0]?.evolves_to
 
-
-    val evo2 = evo1[0]?.evolves_to
-    var evo2Pokemon: String? = null
-    var evo2Trigger: String? = null
-    var evo2Condition: String? = null
-    if (!evo2.isNullOrEmpty()) {
-        val evo2Detail: EvolutionDetail? = evo2[0].evolution_details?.get(0)
-        evo2Pokemon = evo2[0]?.species?.name
-        evo2Trigger = evo2Detail?.trigger?.name
-        if (!evo2Trigger.isNullOrEmpty()) {
-            evo2Condition = when (evo1Trigger) {
-                EvoTriggerEnum.LevelUp.desc -> evo2Detail?.min_level.toString()
-                EvoTriggerEnum.Trade.desc -> "trade"
-                EvoTriggerEnum.UerItem.desc -> evo2Detail?.item?.name
-                EvoTriggerEnum.Other.desc -> "Not Available"
-                EvoTriggerEnum.Shed.desc -> "shed"
-                else -> null
+        if (!evo2.isNullOrEmpty()) {
+            val evo2Detail: EvolutionDetail? = evo2[0].evolution_details?.get(0)
+            evo2Pokemon = evo2[0]?.species?.name
+            evo2Trigger = evo2Detail?.trigger?.name
+            if (!evo2Trigger.isNullOrEmpty()) {
+                evo2Condition = when (evo1Trigger) {
+                    EvoTriggerEnum.LevelUp.desc -> evo2Detail?.min_level.toString()
+                    EvoTriggerEnum.Trade.desc -> "trade"
+                    EvoTriggerEnum.UerItem.desc -> evo2Detail?.item?.name
+                    EvoTriggerEnum.Other.desc -> "Not Available"
+                    EvoTriggerEnum.Shed.desc -> "shed"
+                    else -> null
+                }
             }
         }
     }
+
+
+
 
     return EvolutionChainDto(
         id = this.id,

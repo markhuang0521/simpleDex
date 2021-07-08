@@ -19,18 +19,11 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
     val showNoResult: SingleLiveEvent<Boolean> = SingleLiveEvent()
 
     init {
+        showNoResult.value = false
+
         viewModelScope.launch {
-//           repository.deleteAllMoveSet()
-            val num = repository.countMoveSets()
 
-            if (num <= 0) {
-                showLoading.value = true
-
-                repository.downloadMoveSets()
-
-            }
-
-            refreshCurList()
+            loadFullMoveSet()
         }
     }
 
@@ -51,6 +44,7 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
 
         }
     }
+
     fun refreshCurList() {
 
         if (!curMoveSets.value.isNullOrEmpty()) {
@@ -66,6 +60,9 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
     }
 
     private fun loadSelectedMoves(list: List<String>) {
+        viewModelScope.launch {
+            curMoveSets.value = repository.getSelectedMoves(list)
+        }
 
 
     }
@@ -82,7 +79,10 @@ class MoveSetViewModel(private val repository: MoveSetRepository) : ViewModel() 
 
     fun searchMovesByName(name: String) {
         viewModelScope.launch {
-            curMoveSets.value = repository.searchMovesByName(name)
+            val result = repository.searchMovesByName(name)
+            curMoveSets.value = result
+            showNoResult.value = result.isEmpty()
+
 
         }
 

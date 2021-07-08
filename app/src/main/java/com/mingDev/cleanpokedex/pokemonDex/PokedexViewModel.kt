@@ -24,19 +24,12 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
     val selectedOrder = MutableLiveData<String>()
 
     init {
+        showNoResult.value = false
         viewModelScope.launch {
 
 //            repository.deleteAllPokemon()
 
-            val num = repository.countPokemons()
-            Timber.d("total pokemon in db" + num.toString())
 
-            if (num <= 0) {
-                Timber.d(num.toString())
-                showLoading.value = true
-
-                repository.downloadPokedex()
-            }
             refreshCurList()
         }
     }
@@ -124,6 +117,8 @@ class PokedexViewModel(private val repository: PokemonRepository) : ViewModel() 
 
             val result = repository.searchPokemonsByName(name)
             curPokemonList.value = result
+            showNoResult.value = result.isEmpty()
+
         }
     }
 

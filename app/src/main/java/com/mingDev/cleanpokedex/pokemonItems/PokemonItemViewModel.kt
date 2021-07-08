@@ -18,14 +18,6 @@ class PokemonItemViewModel(private val repository: PokemonItemRepository) : View
 
     init {
         viewModelScope.launch {
-//           repository.deleteAllMoveSet()
-            val num = repository.countItems()
-            if (num <= 0) {
-                showLoading.value = true
-
-                repository.downloadItems()
-            }
-
             loadFullItems()
         }
     }

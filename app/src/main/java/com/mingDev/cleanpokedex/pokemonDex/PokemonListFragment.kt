@@ -67,6 +67,26 @@ class PokemonListFragment : Fragment(), PokemonListener,
     }
 
     private fun setUpObserver() {
+
+        viewModel.showLoading.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.textLoading.visibility = View.VISIBLE
+
+            } else {
+                binding.progressBar.visibility = View.GONE
+                binding.textLoading.visibility = View.GONE
+            }
+        })
+//        viewModel.showNoResult.observe(viewLifecycleOwner, Observer {
+//            if (it) {
+//                binding.textNoResult.visibility = View.VISIBLE
+//            } else {
+//                binding.textNoResult.visibility = View.GONE
+//
+//            }
+//        })
+
         viewModel.curPokemonList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 pokeDexAdapter.submitList(it)

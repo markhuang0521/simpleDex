@@ -36,23 +36,37 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
+        <!--        loading text-->
+        <TextView
+            android:id="@+id/text_loading"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:text="@string/loading_dex"
+            android:textColor="@color/psychic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressBar" />
         <!--        no search result text-->
-        <!--        <TextView-->
-        <!--            android:id="@+id/text_no_search_result"-->
-        <!--            style="@style/TextAppearance.AppCompat.Title"-->
-        <!--            viewVisible="@{viewModel.showNoResult}"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@id/progressBar"-->
-        <!--            android:layout_centerInParent="true"-->
-        <!--            android:layout_margin="10dp"-->
-        <!--            android:lineSpacingMultiplier="1.5"-->
-        <!--            android:text="@string/no_pokemon_search_result"-->
-        <!--            android:textColor="@color/water"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/text_no_result"-->
+<!--            style="@style/TextAppearance.AppCompat.Title"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/progressBar"-->
+<!--            android:layout_marginStart="32dp"-->
+<!--            android:layout_marginTop="64dp"-->
+<!--            android:layout_marginEnd="32dp"-->
+<!--            android:text="@string/no_pokemon_search_result"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/water"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView_pokedex"
@@ -79,8 +93,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView_pokedex"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/searchView_pokedex" />
 
 
         <com.nambimobile.widgets.efab.ExpandableFabLayout

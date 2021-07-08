@@ -30,7 +30,14 @@ class PokemonItemRepository(
     }
 
     suspend fun getAllItems(): List<PokemonItemDto> = withContext(ioDispatcher) {
-        return@withContext itemDao.getAllItems()
+        var items = itemDao.getAllItems()
+
+        if (items.isEmpty()) {
+
+            downloadItems()
+            items = itemDao.getAllItems()
+        }
+        return@withContext items
     }
 
 

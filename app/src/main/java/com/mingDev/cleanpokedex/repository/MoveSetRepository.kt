@@ -32,8 +32,21 @@ class MoveSetRepository(
     }
 
     suspend fun getAllMoveSet(): List<MoveSetDto> = withContext(ioDispatcher) {
-        return@withContext moveSetDao.getAllMoves()
+        var moves = moveSetDao.getAllMoves()
+
+        if (moves.isEmpty()) {
+
+            downloadMoveSets()
+            moves = moveSetDao.getAllMoves()
+        }
+        return@withContext moves
     }
+
+    suspend fun getSelectedMoves(moveList: List<String>): List<MoveSetDto> =
+        withContext(ioDispatcher) {
+
+            return@withContext moveSetDao.getMovesByList(moveList)
+        }
 
     suspend fun getPokemonListByMove(moveName: String): List<PokemonDto> =
         withContext(ioDispatcher) {

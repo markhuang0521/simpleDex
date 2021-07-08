@@ -26,7 +26,7 @@ class PokemonRepository(
     // fetch data from api
 
     suspend fun downloadPokedex() = withContext(ioDispatcher) {
-        val response = pokeApi.getPokemonList(100, 0)
+        val response = pokeApi.getPokemonList(151, 0)
         val results: List<ResultUrl> = response.results
         val pokemonDtos = mutableListOf<PokemonDto>()
         val pokemonDetailDtos = mutableListOf<PokemonDetailDto>()
@@ -61,7 +61,14 @@ class PokemonRepository(
 
     // fetch data from tb_pokemon
     suspend fun getAllPokemons(): List<PokemonDto> = withContext(ioDispatcher) {
-        return@withContext pokeDexDao.getAllPokemons()
+        var pokemons = pokeDexDao.getAllPokemons()
+
+        if (pokemons.isEmpty()) {
+
+            downloadPokedex()
+            pokemons = pokeDexDao.getAllPokemons()
+        }
+        return@withContext pokemons
 
     }
 

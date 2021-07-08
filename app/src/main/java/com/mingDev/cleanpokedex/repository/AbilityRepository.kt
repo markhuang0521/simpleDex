@@ -31,7 +31,14 @@ class AbilityRepository(
     }
 
     suspend fun getAllAbility(): List<AbilityDto> = withContext(ioDispatcher) {
-        return@withContext abilityDao.getAllAbility()
+        var abilities = abilityDao.getAllAbility()
+
+        if (abilities.isEmpty()) {
+
+            downloadAbility()
+            abilities = abilityDao.getAllAbility()
+        }
+        return@withContext abilities
     }
 
     suspend fun getAbilityByName(abilityName: String): AbilityDto =

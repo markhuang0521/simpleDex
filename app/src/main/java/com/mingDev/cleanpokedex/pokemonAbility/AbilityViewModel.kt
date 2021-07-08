@@ -18,14 +18,6 @@ class AbilityViewModel(private val repository: AbilityRepository) : ViewModel() 
 
     init {
         viewModelScope.launch {
-//           repository.deleteAllMoveSet()
-            val num = repository.countAbilities()
-            if (num <= 0) {
-                showLoading.value = true
-
-                repository.downloadAbility()
-
-            }
 
             loadFullAbilities()
         }
@@ -43,6 +35,7 @@ class AbilityViewModel(private val repository: AbilityRepository) : ViewModel() 
     fun setAbility(abilityDto: AbilityDto) {
         selectedAbility.value = abilityDto
     }
+
     fun getPokemonsListByMove() {
         showLoading.value = true
 

@@ -7,6 +7,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+        storeFile file('/Users/markhuang/Desktop/app_keystore/clean_pokedex_key')
+            storePassword 'ming0521H'
+            keyAlias 'key0'
+            keyPassword 'ming0521H'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -14,10 +22,11 @@ android {
         applicationId "com.mingDev.cleanpokedex"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 4
-        versionName "1.2"
+        versionCode 5
+        versionName "1.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
     buildFeatures {
         dataBinding true

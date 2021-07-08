@@ -4,7 +4,7 @@
     <string name="app_label">Pokedex</string>
     <string name="search_hint">search pokemon name or ID</string>
 
-    <string name="no_pokemon_search_result">No Pokemon Found... \nPlease try a different Search</string>
+    <string name="no_pokemon_search_result">No result Found... \nPlease try a different name</string>
     <string name="title_activity_pokemon_detail">detailActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -23,4 +23,5 @@
     <string name="game_description">Game Description</string>
     <string name="power">Power</string>
     <string name="accuracy">Accuracy</string>
+    <string name="loading_dex">Loading Dex Please Hold...</string>
 </resources>

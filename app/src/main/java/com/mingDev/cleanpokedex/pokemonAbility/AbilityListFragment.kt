@@ -56,6 +56,16 @@ class AbilityListFragment : Fragment(), AbilityListener {
     }
 
     private fun setUpObserver() {
+        viewModel.showLoading.observe(viewLifecycleOwner, Observer {
+            if (it){
+                binding.progressBar.visibility=View.VISIBLE
+                binding.textLoading.visibility=View.VISIBLE
+
+            }else{
+                binding.progressBar.visibility=View.GONE
+                binding.textLoading.visibility=View.GONE
+            }
+        })
         viewModel.allAbilities.observe(viewLifecycleOwner, Observer {
             it?.let {
                 abilityAdapter.submitList(it)
